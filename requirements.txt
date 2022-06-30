@@ -1,0 +1,4 @@
+web3
+web3[tester]
+requests
+setuptools>=42
