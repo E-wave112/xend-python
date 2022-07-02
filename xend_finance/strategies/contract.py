@@ -1,6 +1,5 @@
 from typing import Any, List
 from web3 import Web3
-from abis.index import test_busd
 
 def getContract(provider:str, abi:List[Any], address:str) -> Web3:
     """ Get smart contract instance from web3.
@@ -14,5 +13,3 @@ def getContract(provider:str, abi:List[Any], address:str) -> Web3:
     """
     web3 = Web3(Web3.HTTPProvider(provider))
     return web3.eth.contract(abi=abi, address=address)    
-
-print(test_busd())

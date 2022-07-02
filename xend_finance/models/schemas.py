@@ -9,8 +9,19 @@ class Options(BaseModel):
     key: Any
     
 class Layer2Addresses(BaseModel):
-    pass
-
+    name: str
+    logo: Optional[str]
+    tokenAddress: str
+    tokenAbi: List[Any]
+    protocolName: str
+    protocolAddress: str
+    protocolAbi: List[Any]
+    network: int
+    decimals: int
+    widthdrawDecimals: int
+    ppfsMethod: str
+    
+    
 class Addresses(BaseModel):
     PROTOCOL_ADAPTER: str
     PROTOCOL_SERVICE: str
