@@ -1,1 +1,1 @@
-XEND_URL="https://api.xend.finance/xend-finance/addresses"
+XEND_URL = "https://api.xend.finance/xend-finance/addresses"
