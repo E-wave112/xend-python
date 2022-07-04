@@ -1,13 +1,17 @@
 from pydantic import BaseModel
 from typing import List, Any, Optional
 
+# from xend_finance.utils.class_methods import GetSetItems
+
+
 class Options(BaseModel):
     env: Optional[str]
-    protocols: Optional[List[Protocols]]
+    protocols: Optional[List[Protocols]]  # noqa: F821
     protocolName: Optional[str]
     layer2: Optional[List[Any]]
     key: Any
-    
+
+
 class Layer2Addresses(BaseModel):
     name: str
     logo: Optional[str]
@@ -20,8 +24,8 @@ class Layer2Addresses(BaseModel):
     decimals: int
     widthdrawDecimals: int
     ppfsMethod: str
-    
-    
+
+
 class Addresses(BaseModel):
     PROTOCOL_ADAPTER: str
     PROTOCOL_SERVICE: str
@@ -36,12 +40,14 @@ class Addresses(BaseModel):
     XEND_TOKEN: str
     TOKEN: str
     PROTOCOL_CURRENCY: str
-    
+
+
 class Protocols(BaseModel):
-    name:str
+    name: str
     code: str
-    adresses: Addresses
-    
+    addresses: Addresses
+
+
 class CooperativeCycleData(BaseModel):
     groupId: int
     cycleStakeAmount: Any
@@ -50,9 +56,8 @@ class CooperativeCycleData(BaseModel):
     maxMembers: int
 
 
-
 class EsusuCycleData(BaseModel):
-    groupId:int
+    groupId: int
     depositAmount: Any
     payoutIntervalInSeconds: int
     startTimeInSeconds: int
