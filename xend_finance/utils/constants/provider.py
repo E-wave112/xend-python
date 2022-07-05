@@ -6,23 +6,23 @@ PROVIDERS = {
     },
     "BSC_MAINNET": {
         "currency": "BUSD",
-        "url": "https://bsc-dataseed.binance.org/",
+        "url": "https://bsc-dataseed.binance.org",
         "chain": 56,
     },
     "BSC_TESTNET": {
         "currency": "BUSD",
-        "url": "https://data-seed-prebsc-1-s1.binance.org:8545/",
+        "url": "https://data-seed-prebsc-1-s1.binance.org:8545",
         "chain": 97,
     },
     "POLYGON_MAINNET": {
         "currency": "MATIC",
-        "url": "https://rpc-mainnet.matic.network/",
+        "url": "https://rpc-mainnet.matic.network",
         "chain": 137,
     },
-    "POYLGON_TESTNET": {
+    "POLYGON_TESTNET": {
         "currency": "MATIC",
-        "url": "https://rpc-mumbai.matic.today/",
-        "chain": 8001,
+        "url": "https://rpc-mumbai.matic.today",
+        "chain": 80001,
     },
     "LOCALHOST": {"currency": "BUSD", "url": "http://127.0.0.1:8545", "chain": 0},
 }
