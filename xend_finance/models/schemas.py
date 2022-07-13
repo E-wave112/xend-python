@@ -62,3 +62,15 @@ class EsusuCycleData(BaseModel):
     payoutIntervalInSeconds: int
     startTimeInSeconds: int
     maxMembers: int
+
+
+class ArgsCreateGroup(BaseModel):
+    private_key: str
+    provider: str
+    group_name: str
+    group_symbol: str
+
+
+class ArgsGetGroup(BaseModel):
+    provider: str
+    group_id: str
