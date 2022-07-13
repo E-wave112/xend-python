@@ -45,7 +45,6 @@ def retrieve_wallet(chain_id: int, private_key: str) -> dict:
     provider = check_chain_id(chain_id)["url"]
     web3 = initialize_web3(provider)
     wallet = web3.eth.account.from_key(private_key)
-    # return wallet.address == placeholde
     return {"address": wallet.address, "private_key": wallet.privateKey.hex()}
 
 
