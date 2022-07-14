@@ -74,3 +74,10 @@ class ArgsCreateGroup(BaseModel):
 class ArgsGetGroup(BaseModel):
     provider: str
     group_id: str
+
+
+class Fixed(BaseModel):
+    provider: str
+    private_key: str
+    deposit_amount: Any
+    lock_period: int
