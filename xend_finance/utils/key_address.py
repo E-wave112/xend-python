@@ -1,4 +1,3 @@
-# from web3 import Web3  # noqa: F401
 from xend_finance.utils.web3_utils import initialize_web3
 
 

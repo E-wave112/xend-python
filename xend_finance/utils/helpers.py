@@ -128,13 +128,13 @@ def format_amount(amount, network: int, asset_name: str):
     :return: The amount of the asset in the correct format.
     """
     if network == 56:
-        return Web3.fromWei(amount, "ether")
+        return float(Web3.fromWei(amount, "ether"))
     elif network == 137:
         if asset_name == "WBTC":
             return parse_float(str(amount)) * math.pow(10, 8)
         if asset_name == "AAVE":
-            return Web3.fromWei(amount, "ether")
-        return Web3.fromWei(amount, "mwei")
+            return float(Web3.fromWei(amount, "ether"))
+        return float(Web3.fromWei(amount, "mwei"))
     else:
         return amount
 
