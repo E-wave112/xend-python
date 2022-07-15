@@ -7,7 +7,7 @@ from typing import List, Any, Optional
 class Options(BaseModel):
     env: Optional[str]
     protocols: Optional[List[Any]]
-    protocolName: Optional[str]
+    protocol_name: Optional[str]
     layer2: Optional[List[Any]]
     key: Any
 
