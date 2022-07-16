@@ -49,19 +49,19 @@ class Protocols(BaseModel):
 
 
 class CooperativeCycleData(BaseModel):
-    groupId: int
-    cycleStakeAmount: Any
-    payoutIntervalInSeconds: int
+    group_id: int
+    cycle_stake_amount: Any
+    payout_interval_in_seconds: int
     startTimeInSeconds: int
     maxMembers: int
 
 
 class EsusuCycleData(BaseModel):
-    groupId: int
-    depositAmount: Any
-    payoutIntervalInSeconds: int
-    startTimeInSeconds: int
-    maxMembers: int
+    group_id: int
+    deposit_amount: Any
+    payout_interval_in_seconds: int
+    start_time_in_seconds: int
+    max_members: int
 
 
 class ArgsCreateGroup(BaseModel):
@@ -81,3 +81,13 @@ class Fixed(BaseModel):
     private_key: str
     deposit_amount: Any
     lock_period: int
+
+
+class EsusuCycle(BaseModel):
+    provider: str
+    private_key: str
+    group_id: int
+    deposit_amount: Any
+    payout_inteval_seconds: int
+    start_time_in_seconds: int
+    max_members: int
