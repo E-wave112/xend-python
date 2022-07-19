@@ -1,11 +1,9 @@
+from xend_finance.strategies.cooperative.cooperative_index import Cooperative
 from xend_finance.strategies.esusu.esusu_index import Esusu
 from xend_finance.strategies.group.group_index import Group
 from xend_finance.strategies.individual.individual_index import Personal
 from xend_finance.strategies.xauto.auto import Xauto
 from xend_finance.strategies.xvault.vault import Xvault
-
-# from xend_finance.utils.balance import get_balance
-# from xend_finance.utils.constants.chain_id import ChainId
 from xend_finance.models.schemas import Addresses, Options
 from xend_finance.utils.balance import get_balance
 from xend_finance.utils.helpers import check_chain_id
@@ -32,12 +30,9 @@ class XendFinance:
         self.provider = chain_data["url"]
         self.currency = chain_data["currency"]
         self.protocol = selector["name"]
-        # self.layer2_addresses = self.get_layer2_addresses()
         self.addresses = addresses_selector
         self.share_currency = addresses_selector.PROTOCOL_CURRENCY
         self.available_protocols = selector["available"]
-        # self.cooperative_cycles = self.get_cooperative_cycles()
-        # self.esusu_cycles = self.get_esusu_cycles()
         self.xauto = Xauto(self.options.layer2, self.chain_id, self.private_key)
         self.xvault = Xvault(self.options.layer2, self.chain_id, self.private_key)
         self.group = Group(self.provider, self.private_key, self.addresses)
@@ -45,6 +40,9 @@ class XendFinance:
             self.provider, self.private_key, self.options, self.addresses, self.protocol
         )
         self.esusu = Esusu(
+            self.provider, self.private_key, self.options, self.addresses, self.protocol
+        )
+        self.cooperative = Cooperative(
             self.provider, self.private_key, self.options, self.addresses, self.protocol
         )
 

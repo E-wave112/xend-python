@@ -25,6 +25,6 @@ def perform_fixed_withdrawal(private_key: str, provider: str, record_id: int, ad
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "WithdrawFromFixedDeposit"
         )
-        return {"status": "success", "receipt": receipt}
+        return {"status": "success", "data": receipt}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

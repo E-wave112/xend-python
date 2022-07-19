@@ -34,7 +34,7 @@ def create_esusu_groups(
         receipt = send_signed_transaction(
             private_key, provider, data, new_contract, addresses.ESUSU_SERVICE, "CreateGroup"
         )
-        return {"status": "success", "receipt": receipt}
+        return {"status": "success", "data": receipt}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})
 
@@ -56,7 +56,7 @@ def get_esusu_groups(provider: str, private_key: str, addresses: Addresses):
 
         contract = getContract(provider, GROUPS, addresses.GROUPS)
         esusu_adapter_contract = getContract(provider, ESUSU_ADAPTER, addresses.ESUSU_ADAPTER)
-        groups_count = contract.functions.getRecordIndexLengthForCreator(client_address).call()
+        groups_count = int(contract.functions.getRecordIndexLengthForCreator(client_address).call())
         esusu_groups = []
         for index in range(groups_count, 1, -1):
             group = contract.functions.getGroupForCreatorIndexer(client_address, index).call()

@@ -29,6 +29,6 @@ def create_group(arg: ArgsCreateGroup, addresses: Addresses):
         transaction_hash = send_signed_transaction(
             private_key, provider, data, contract, addresses.GROUPS, "createGroup"
         )
-        return {"status": "success", "receipt": transaction_hash}
+        return {"status": "success", "data": transaction_hash}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})
