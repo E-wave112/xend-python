@@ -30,7 +30,9 @@ def create_flexible_deposit(
         # convert deposit_amount to wei
         deposit_amount = Web3.toWei(deposit_amount, "ether")
         # approve the transaction
-        approval_data = token_contract.functions.approve(addresses.PERSONAL, deposit_amount)
+        approval_data = token_contract.functions.approve(
+            addresses.PERSONAL, deposit_amount
+        ).build_transaction()
         # sign the transaction
         send_signed_transaction(
             private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
@@ -40,6 +42,6 @@ def create_flexible_deposit(
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "deposit"
         )
-        return {"status": "success", "receipt": receipt}
+        return {"status": "success", "data": receipt}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

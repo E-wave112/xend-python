@@ -48,14 +48,6 @@ class Protocols(BaseModel):
     addresses: Addresses
 
 
-class CooperativeCycleData(BaseModel):
-    group_id: int
-    cycle_stake_amount: Any
-    payout_interval_in_seconds: int
-    startTimeInSeconds: int
-    maxMembers: int
-
-
 class EsusuCycleData(BaseModel):
     group_id: int
     deposit_amount: Any
@@ -89,5 +81,23 @@ class EsusuCycle(BaseModel):
     group_id: int
     deposit_amount: Any
     payout_inteval_seconds: int
+    start_time_in_seconds: int
+    max_members: int
+
+
+class CooperativeCycle(BaseModel):
+    provider: str
+    private_key: str
+    group_id: int
+    cycle_stake_amount: Any
+    payout_interval_in_seconds: int
+    start_time_in_seconds: int
+    max_members: int
+
+
+class CooperativeCycleData(BaseModel):
+    group_id: int
+    cycle_stake_amount: Any
+    payout_interval_in_seconds: int
     start_time_in_seconds: int
     max_members: int

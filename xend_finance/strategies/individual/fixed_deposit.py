@@ -37,6 +37,6 @@ def create_fixed_deposit(args: Fixed, addresses: Addresses):
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "FixedDeposit"
         )
-        return {"status": "success", "receipt": receipt}
+        return {"status": "success", "data": receipt}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

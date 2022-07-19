@@ -36,6 +36,6 @@ def perform_flexible_withdraw(
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "withdraw"
         )
-        return {"status": "success", "receipt": receipt}
+        return {"status": "success", "data": receipt}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})
