@@ -29,7 +29,7 @@ def join_a_cooperative(
         )
 
         # initiate the join cooperative smart contract transaction
-        data = contract.functions.joinCycle(cycle_id, number_of_stakes).call()
+        data = contract.functions.joinCycle(cycle_id, number_of_stakes).build_transaction()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.COOPERATIVE, "joinCycle"
         )
