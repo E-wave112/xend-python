@@ -67,10 +67,3 @@ ABIS = {
         "fortubeAdapter": FADAPTER,
     },
 }
-
-# print(len(ABIS))
-
-# def test_busd():
-#     return ABIS["testnet"]["esusu_service"]
-
-# print(test_busd())

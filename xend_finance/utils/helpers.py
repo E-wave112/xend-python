@@ -137,9 +137,3 @@ def format_amount(amount, network: int, asset_name: str):
         return float(Web3.fromWei(amount, "mwei"))
     else:
         return amount
-
-
-# print(provider_to_chain_id('https://rpc-mumbai.matic.today/'))
-# print(check_chain_id(80001))
-
-print(parse_float("30f8g4"))

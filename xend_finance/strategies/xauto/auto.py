@@ -193,7 +193,3 @@ class Xauto:
         if len(filtered_tokens) == 0:
             return None
         return filtered_tokens and filtered_tokens[0]
-
-
-# test_xauto = Xauto()
-# print(test_xauto.protocol)

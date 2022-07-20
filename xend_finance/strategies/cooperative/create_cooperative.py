@@ -11,7 +11,7 @@ def create_cooperative_cycle(args: CooperativeCycle, addresses: Addresses):
     provider = args.provider
     group_id = args.group_id
     cycle_stake_amount = args.cycle_stake_amount
-    payout_interval_seconds = args.payout_interval_seconds
+    payout_interval_in_seconds = args.payout_interval_in_seconds
     start_time_in_seconds = args.start_time_in_seconds
     max_members = args.max_members
     try:
@@ -20,7 +20,7 @@ def create_cooperative_cycle(args: CooperativeCycle, addresses: Addresses):
         data = contract.functions.createCycle(
             group_id,
             start_time_in_seconds,
-            payout_interval_seconds,
+            payout_interval_in_seconds,
             max_members,
             False,
             cycle_stake_amount,

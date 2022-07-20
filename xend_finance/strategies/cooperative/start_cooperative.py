@@ -10,7 +10,7 @@ def start_cooperative_cycle(cycle_id: int, provider: str, private_key: str, addr
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
         data = contract.functions.activateCycle(cycle_id)
         receipt = send_signed_transaction(
-            private_key, provider, data, contract, addresses.COOPERATIVE, "ActivateCycle"
+            private_key, provider, data, contract, addresses.COOPERATIVE, "activateCycle"
         )
         return {
             "status": "success",
