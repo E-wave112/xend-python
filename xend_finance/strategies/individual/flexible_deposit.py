@@ -38,7 +38,7 @@ def create_flexible_deposit(
             private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
         )
 
-        data = contract.functions.deposit().call()
+        data = contract.functions.deposit().build_transaction()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "deposit"
         )

@@ -54,6 +54,3 @@ def get_bsc_mainnet_addresses() -> List[Protocols]:
 
 def get_layer2_protocols():
     return layer_2_assets.layer_assets
-
-
-print(get_bsc_mainnet_addresses())
