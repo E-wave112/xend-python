@@ -1,8 +1,6 @@
 import pathlib
 from distutils.core import setup
 
-from setuptools import find_packages
-
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
 
@@ -12,12 +10,12 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="xend_python_sdk",
-    version="0.1.0",
+    version="0.1.2",
     description="The Xend Finance SDK arms python developers with the ability to build DeFi \
     applications with Xend Finance without needing to understand the complexities  \
     of the underlying blockchain or layer2 infrastructure.",
     author="Osagie Iyayi",
-    packages=find_packages(),
+    packages=["xend_finance"],
     author_email="iyayiemmanuel1@gmail.com",
     url="https://github.com/E-wave112/xend-python",
     license="MIT",
