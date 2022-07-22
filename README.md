@@ -29,7 +29,7 @@ pip install xend_python_sdk
 
 ```py
 import xend_finance
-from xend_finance import XendFinance
+from xend_finance.main import XendFinance
 ```
 
 Instantiate the XendFinance class like so:
