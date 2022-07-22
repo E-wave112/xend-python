@@ -26,4 +26,4 @@ This will keep your changes in sync with the main branch and most importantly, t
 
 ### LICENSE
 
-This project is licenced under the [MIT Licence](/LICENSE).
+This project is licenced under the [MIT Licence](https://github.com/E-wave112/xend-python/blob/main/LICENSE).

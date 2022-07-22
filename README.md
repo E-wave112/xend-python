@@ -1,6 +1,8 @@
-![Logo](https://images.app.goo.gl/1A84YrfY7Y36Xd6M8)
-<!-- ![Logo](https://xend.finance/assets-2/logo.svg) -->
 # Xend-python SDK
+
+![PyPI](https://img.shields.io/pypi/v/xend_python_sdk)  ![PyPI - License](https://img.shields.io/pypi/l/xend-python-sdk)
+
+
 The Xend Finance SDK arms python developers with the ability to build DeFi applications with [Xend Finance](https://xend.finance/) without needing to understand the complexities of the underlying blockchain or layer2 infrastructure.
 
 ## Table of content
@@ -13,7 +15,7 @@ The Xend Finance SDK arms python developers with the ability to build DeFi appli
 
 ## Want to contribute?
 
-Contributions are welcome! Kindly refer to the [contribution guidelines](/CONTRIBUTING.md).
+Contributions are welcome! Kindly refer to the [contribution guidelines](https://github.com/E-wave112/xend-python/blob/main/CONTRIBUTING.md).
 
 ## Installation
 
@@ -135,11 +137,11 @@ The following services are available with this SDK
 - [Share Balance](#share-balance)
 
 **7**. [**Xvault**](#7-xvault)
-- [Approve](#approve)
-- [Deposit](#deposit)
-- [Withdraw](#withdraw)
-- [Get Price per share](#get-price-per-share)
-- [Share Balance](#share-balance)
+- [Approve vault](#approve-vault)
+- [Deposit vault](#deposit-vault)
+- [Withdraw vault](#withdraw-vault)
+- [Get Price per share vault](#get-price-per-share-vault)
+- [Share Balance vault](#share-balance-vault)
 
 
 ### 1. General
@@ -740,7 +742,7 @@ get_share_balance = xend.xauto.share_balance("DAI")
 
 This strategy provides utility methods for auto yield related operations  on the xVault protocol
 
-#### Approve
+#### Approve vault
 This method approves the amount of tokens to be spent from a user's wallet
 
 ```py
@@ -753,7 +755,7 @@ approve_token = xend.xvault.approve("BSC", 250)
 | `token`    | string       | true         | The token to be approved |
 | `amount`    | integer      | true         | The amount of tokens to be approved |
 
-#### Deposit
+#### Deposit vault
 This method deposits an amount of tokens to a user's wallet
 
 ```py
@@ -767,7 +769,7 @@ deposit_token = xend.xvault.deposit("BSC",150)
 | `token`    | string       | true         | The token to be deposited |
 | `amount`    | integer      | true         | The amount of tokens to be deposited |
 
-#### Withdraw
+#### Withdraw vault
 This method withdraws an amount of tokens from a user's wallet
 
 ```py
@@ -781,7 +783,7 @@ withdraw_token = xend.xvault.withdraw("DAI",240)
 | `token`    | string       | true         | The token to be withdrawn |
 | `amount`    | integer      | true         | The amount of tokens to be withdrawn |
 
-#### Get Price per Share
+#### Get Price per Share vault
 This method returns the price per share of a token
 
 ```py
@@ -794,7 +796,7 @@ get_ppfs = xend.xvault.ppfs("DAI")
 | --------------- | ------------- | ------------ | ------------------------------- |
 | `token`    | string       | true         | The token name |
 
-#### Share Balance
+#### Share Balance vault
 This method returns the balance of a token in a user's wallet
 
 ```py
