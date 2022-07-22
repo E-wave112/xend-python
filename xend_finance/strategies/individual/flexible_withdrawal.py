@@ -32,7 +32,7 @@ def perform_flexible_withdraw(
             amount = float(amount) * math.pow(10, 8)
         amount = float(amount) * math.pow(10, 18)
         contract = getContract(provider, ABIS["PERSONAL"], addresses.PERSONAL)
-        data = contract.functions.withdraw(amount).build_transaction()
+        data = contract.functions.withdraw(round(amount)).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "withdraw"
         )

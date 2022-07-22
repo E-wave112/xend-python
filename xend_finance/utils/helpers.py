@@ -7,8 +7,6 @@ from xend_finance.utils.constants.misc import REGEX_NUMBER_STRING
 from xend_finance.utils.constants.provider import PROVIDERS
 from xend_finance.utils.constants.chain_id import ChainId
 
-# from xend_finance.utils.web3_utils import initialize_web3
-
 
 def providers_to_list():
     """

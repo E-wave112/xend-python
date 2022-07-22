@@ -6,13 +6,11 @@ from xend_finance.strategies.xauto.auto import Xauto
 from xend_finance.strategies.xvault.vault import Xvault
 from xend_finance.models.schemas import Addresses, Options
 from xend_finance.utils.balance import get_balance
+from xend_finance.utils.get_address import get_bsc_mainnet_addresses, get_layer2_protocols
 from xend_finance.utils.helpers import check_chain_id
 from xend_finance.utils.price_per_full_share import price_per_full_share
 from xend_finance.utils.protocol_selector import protocol_selector
 from xend_finance.utils.web3_utils import create_wallet, retrieve_wallet
-
-
-default_options: Options = {"env": "testnet"}
 
 
 class XendFinance:
@@ -20,16 +18,20 @@ class XendFinance:
     The main class that is used to interact with the XendFinance API.
     """
 
-    def __init__(self, chain_id: int, private_key: str, options=default_options):
-        selector = protocol_selector(options)
+    def __init__(self, chain_id: int, private_key: str, options: Options):
+        # options.layer2 = get_layer2_protocols()
         chain_data = check_chain_id(chain_id)
-        addresses_selector: Addresses = selector["addresses"]
         self.chain_id = chain_id
         self.private_key = private_key
-        self.options = options
+        self.options = Options(**options)
+        self.options.layer2 = get_layer2_protocols()
+        self.options.protocols = get_bsc_mainnet_addresses()
         self.provider = chain_data["url"]
         self.currency = chain_data["currency"]
+        selector = protocol_selector(self.options)
         self.protocol = selector["name"]
+        addresses_selector: Addresses = Addresses(**selector["addresses"])
+        # addresses_selector.PERSONAL = "0x4A37F2aE81AE04dcAF974C245B3d73C8f01C5D46"
         self.addresses = addresses_selector
         self.share_currency = addresses_selector.PROTOCOL_CURRENCY
         self.available_protocols = selector["available"]
@@ -75,5 +77,3 @@ class XendFinance:
         :return: The price per full share of the provider and the protocol adapter.
         """
         return price_per_full_share(self.provider, self.addresses.PROTOCOL_ADAPTER)
-
-    pass

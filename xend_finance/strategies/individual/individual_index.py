@@ -1,4 +1,4 @@
-from xend_finance.models.schemas import Options, Addresses
+from xend_finance.models.schemas import Fixed, Options, Addresses
 from xend_finance.strategies.individual.fixed_deposit import create_fixed_deposit
 from xend_finance.strategies.individual.fixed_withdraw import perform_fixed_withdrawal
 from xend_finance.strategies.individual.flexible_deposit import create_flexible_deposit
@@ -9,6 +9,10 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
 class Personal:
+    """
+    Class that allows users to access personal related functions
+    """
+
     def __init__(
         self, provider: str, private_key: str, options: Options, address: Addresses, protocol: str
     ):
@@ -36,7 +40,7 @@ class Personal:
         """
         It creates a flexible deposit transaction and returns the transaction hash
 
-        :param deposit_amount: The amount of ETH you want to deposit
+        :param deposit_amount: The amount of token you want to deposit
         :type deposit_amount: str
         :return: The return value is a dictionary with the following keys:
             - status: "success" or "error"
@@ -67,6 +71,7 @@ class Personal:
                 "deposit_amount": deposit_amount,
                 "lock_period": lock_period,
             }
+            args = Fixed(**args)
             return create_fixed_deposit(args, self.address)
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})

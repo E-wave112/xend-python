@@ -1,4 +1,5 @@
 from web3 import Web3
+from web3.middleware import geth_poa_middleware
 from xend_finance.utils.helpers import check_chain_id
 
 
@@ -10,7 +11,10 @@ def initialize_web3(provider: str) -> Web3:
     Returns:
         Web3: Web3 instance.
     """
-    return Web3(Web3.HTTPProvider(provider))
+    web3_instance = Web3(Web3.HTTPProvider(provider))
+    # inject the poa compatibility middleware to the web3 instance
+    web3_instance.middleware_onion.inject(geth_poa_middleware, layer=0)
+    return web3_instance
 
 
 def create_wallet(chain_id: int) -> dict:
@@ -30,7 +34,6 @@ def create_wallet(chain_id: int) -> dict:
     return {"address": wallet.address, "private_key": wallet.privateKey.hex()}
 
 
-# placeholder= "0xEaFc5F0f516657709C06328d66ff8691e88A3D3E"
 def retrieve_wallet(chain_id: int, private_key: str) -> dict:
     """
     > This function takes in a chain_id and a private_key and returns the address
@@ -46,6 +49,3 @@ def retrieve_wallet(chain_id: int, private_key: str) -> dict:
     web3 = initialize_web3(provider)
     wallet = web3.eth.account.from_key(private_key)
     return {"address": wallet.address, "private_key": wallet.privateKey.hex()}
-
-
-# print(retrieve_wallet(0, "0x987c7dc652cbdce2644de5a4994d6f17077db05e65b6de5f83c75ee5a59d00fa"))

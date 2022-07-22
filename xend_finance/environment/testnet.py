@@ -1,7 +1,7 @@
 from typing import List
 from xend_finance.models.schemas import Protocols
 
-testnet_protocols = List[Protocols] = [  # type: ignore
+testnet_protocols: List[Protocols] = [  # type: ignore
     {
         "name": "Venus",
         "code": "venus",

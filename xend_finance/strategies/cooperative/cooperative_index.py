@@ -13,6 +13,10 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
 class Cooperative:
+    """
+    Class that allows users to access cooperative related functions
+    """
+
     def __init__(
         self, provider: str, private_key: str, options: Options, addresses: Addresses, protocol: str
     ):
@@ -25,6 +29,8 @@ class Cooperative:
     def create(self, args: CooperativeCycle):
 
         try:
+            args = {**args, "provider": self.provider, "private_key": self.private_key}
+            args = CooperativeCycle(**args)
             return create_cooperative_cycle(args, self.addresses)
         except BaseError as e:
             raise BaseError(
@@ -56,7 +62,7 @@ class Cooperative:
         except BaseError as e:
             raise BaseError({"status": "error", "message": "Could not check if member", "data": e})
 
-    def start_cyle(self, cycle_id: int):
+    def start_cycle(self, cycle_id: int):
 
         try:
             return start_cooperative_cycle(

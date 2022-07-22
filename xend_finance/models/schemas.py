@@ -1,8 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Any, Optional
 
-# from xend_finance.utils.class_methods import GetSetItems
-
 
 class Options(BaseModel):
     env: Optional[str]
@@ -65,7 +63,7 @@ class ArgsCreateGroup(BaseModel):
 
 class ArgsGetGroup(BaseModel):
     provider: str
-    group_id: str
+    group_id: int
 
 
 class Fixed(BaseModel):
@@ -80,7 +78,7 @@ class EsusuCycle(BaseModel):
     private_key: str
     group_id: int
     deposit_amount: Any
-    payout_inteval_seconds: int
+    payout_interval_in_seconds: int
     start_time_in_seconds: int
     max_members: int
 

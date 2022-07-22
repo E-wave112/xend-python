@@ -10,7 +10,7 @@ def perform_ongoing_withdrawal(
 ):
     try:
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
-        data = contract.functions.withdrawFromCycleWhileItIsOngoing(cycle_id).build_transaction()
+        data = contract.functions.withdrawFromCycleWhileItIsOngoing(cycle_id).transact()
         receipt = send_signed_transaction(
             private_key,
             provider,

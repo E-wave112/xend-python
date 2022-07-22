@@ -27,10 +27,10 @@ def create_esusu_groups(
     try:
         groups_contract = getContract(provider, GROUPS, addresses.GROUPS)
         group_exists = groups_contract.functions.getGroupIndexerByName(name).call()
-        if group_exists["exist"]:
+        if group_exists[0]:
             raise BaseError({"status": "error", "message": "Group already exists"})
         new_contract = getContract(provider, ESUSU_SERVICE, addresses.ESUSU_SERVICE)
-        data = new_contract.functions.CreateGroup(name, symbol).build_transaction()
+        data = new_contract.functions.CreateGroup(name, symbol).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, new_contract, addresses.ESUSU_SERVICE, "CreateGroup"
         )

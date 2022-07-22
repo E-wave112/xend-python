@@ -18,18 +18,18 @@ def join_a_cooperative(
         # to approve the transaction
         cooperative_cycle_info = get_cooperative_info(cycle_id, provider, addresses)
         # get the cycle stake amount
-        cycle_stake_amount = cooperative_cycle_info["cycleStakeAmount"]
+        cycle_stake_amount = cooperative_cycle_info["data"][0]
         deposit_amount = cycle_stake_amount * number_of_stakes
         # approve the smart contract to spend the deposit amount
         approval_data = token_contract.functions.approve(
             addresses.COOPERATIVE, deposit_amount
-        ).build_transaction()
+        ).transact()
         send_signed_transaction(
             private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
         )
 
         # initiate the join cooperative smart contract transaction
-        data = contract.functions.joinCycle(cycle_id, number_of_stakes).build_transaction()
+        data = contract.functions.joinCycle(cycle_id, number_of_stakes).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.COOPERATIVE, "joinCycle"
         )

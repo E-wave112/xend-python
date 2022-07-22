@@ -39,7 +39,9 @@ class Esusu:
             - block_hash: The block hash of the transaction.
             - block_
         """
-        args.private_key = self.private_key
+        args = {**args, "private_key": self.private_key, "provider": self.provider}
+        args = EsusuCycle(**args)
+        # args.private_key = self.private_key
         try:
             return create_esusu_cycle(args, self.addresses)
         except BaseError as e:
@@ -74,9 +76,9 @@ class Esusu:
 
     def get_esusu_info(self, esusu_id: int):
         """
-        It returns the information of an esusu group
+        It returns the information of an esusu group/cycle
 
-        :param esusu_id: The id of the esusu group
+        :param esusu_id: The id of the esusu group/cycle
         :type esusu_id: int
         :return: A dictionary with the status and message keys.
         """
@@ -157,7 +159,7 @@ class Esusu:
         :return: The function is_member_of_cycle() returns a boolean value.
         """
         try:
-            return check_if_member(cycle_id, self.provider, self.private_key, self.addresses)
+            return check_if_member(cycle_id, self.private_key, self.provider, self.addresses)
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 
