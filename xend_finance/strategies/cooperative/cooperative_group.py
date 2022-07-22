@@ -12,9 +12,10 @@ def create_cooperative_group(
         group_contract = getContract(provider, GROUPS, addresses.GROUPS)
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
         group_exists = group_contract.functions.getGroupIndexerByName(group_name).call()
-        if group_exists["exist"]:
+        print(group_exists)
+        if group_exists[0]:
             raise BaseError({"status": "error", "message": "Group already exists"})
-        data = contract.functions.createGroup(group_name, symbol).build_transaction()
+        data = contract.functions.createGroup(group_name, symbol).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.COOPERATIVE, "createGroup"
         )

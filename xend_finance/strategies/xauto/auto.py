@@ -10,6 +10,10 @@ from xend_finance.utils.sendsigned_native_transaction import send_signed_native_
 
 
 class Xauto:
+    """
+    Class that allows users to access Xauto related functions
+    """
+
     protocol = "xAuto"
 
     def __init__(self, assets: List[Any], chain_id: int, private_key: str):
@@ -36,9 +40,7 @@ class Xauto:
             approval_amount = format_amount(amount, self.chain_id, token_name)
             contract = getContract(self.rpc, results["tokenAbi"], results["tokenAddress"])
             # approve the amount of tokens to be spent on the smart contract
-            tx = contract.functions.approve(
-                results["protocolAddress"], approval_amount
-            ).build_transaction()
+            tx = contract.functions.approve(results["protocolAddress"], approval_amount).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
                 self.private_key, self.rpc, tx, contract, results["tokenAddress"], "approve"
@@ -65,7 +67,7 @@ class Xauto:
             deposit_amount = format_amount(amount, self.chain_id, token_name)
             contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
             # approve the amount of tokens to be spent on the smart contract
-            tx = contract.functions.deposit(deposit_amount).build_transaction()
+            tx = contract.functions.deposit(deposit_amount).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
                 self.private_key, self.rpc, tx, contract, results["protocolAddress"], "deposit"
@@ -89,7 +91,7 @@ class Xauto:
             contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
             # approve the amount of tokens to be spent on the smart contract
             deposit_amount = format_amount(amount, self.chain_id, token_name)
-            tx = contract.functions.deposit().build_transaction()
+            tx = contract.functions.deposit().transact()
             #  get the transaction hash
             transaction_hash = send_signed_native_transaction(
                 self.private_key, self.rpc, tx, contract, results["protocolAddress"], deposit_amount
@@ -122,7 +124,7 @@ class Xauto:
             total_deposit = float(share) * float(ppfs_data) / divisor
             withdraw_amount = float(share) * float(amount) / total_deposit
             final_withdraw_amount = math.trunc(withdraw_amount)
-            tx = contract.functions.withdraw(str(final_withdraw_amount)).build_transaction()
+            tx = contract.functions.withdraw(str(final_withdraw_amount)).transact()
             transaction_hash = send_signed_transaction(
                 self.private_key, self.rpc, tx, contract, results["protocolAddress"], "withdraw"
             )

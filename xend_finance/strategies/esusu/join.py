@@ -13,16 +13,16 @@ def join_group(cycle_id: int, provider: str, private_key: str, addresses: Addres
         # get info about the esusu using the cycle id and the token amount needed to join the group
         esusu_cycle = esusu_info(cycle_id, provider, addresses)
         # approve the transaction
-        deposit_amount = esusu_cycle["data"]["DepositAmount"]
+        deposit_amount = esusu_cycle["data"][0]
         approval_data = token_contract.functions.approve(
             addresses.ESUSU_ADAPTER, deposit_amount
-        ).build_transaction()
+        ).transact()
         # sign the transaction
         send_signed_transaction(
             private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
         )
         # execute the join esusu contract function
-        data = contract.functions.JoinEsusu(cycle_id).build_transaction()
+        data = contract.functions.JoinEsusu(cycle_id).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.ESUSU_SERVICE, "JoinEsusu"
         )

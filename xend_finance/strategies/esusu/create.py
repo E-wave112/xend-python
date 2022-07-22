@@ -21,7 +21,7 @@ def create_esusu_cycle(args: EsusuCycle, addresses: Addresses):
     private_key = args.private_key
     group_id = args.group_id
     deposit_amount = args.deposit_amount
-    payout_interval_seconds = args.payout_inteval_seconds
+    payout_interval_in_seconds = args.payout_interval_in_seconds
     start_time_in_seconds = args.start_time_in_seconds
     max_members = args.max_members
     try:
@@ -31,10 +31,10 @@ def create_esusu_cycle(args: EsusuCycle, addresses: Addresses):
         data = contract.functions.CreateEsusu(
             group_id,
             deposit_amount_wei,
-            payout_interval_seconds,
+            payout_interval_in_seconds,
             start_time_in_seconds,
             max_members,
-        ).build_transaction()
+        ).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.ESUSU_SERVICE, "CreateEsusu"
         )

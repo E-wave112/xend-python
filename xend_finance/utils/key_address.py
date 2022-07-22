@@ -12,7 +12,3 @@ def private_key_to_address(provider: str, private_key: str) -> str:
     web3 = initialize_web3(provider)
     wallet = web3.eth.account.from_key(private_key)
     return wallet.address
-
-
-# print(privateKeyToAddress("http://localhost:8545",
-# "0xdc2c0383fdb2515d5a34b43c92c267bd8e55a04113ba4f296d8c20924f6defcf"))

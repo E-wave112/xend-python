@@ -29,11 +29,11 @@ def create_fixed_deposit(args: Fixed, addresses: Addresses):
         # approve the transaction
         approval_data = token_contract.functions.approve(
             addresses.PERSONAL, deposit_amount
-        ).build_transaction()
+        ).transact()
         send_signed_transaction(
             private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
         )
-        data = contract.functions.FixedDeposit(lock_period).build_transaction()
+        data = contract.functions.FixedDeposit(lock_period).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "FixedDeposit"
         )

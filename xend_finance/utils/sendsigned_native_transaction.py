@@ -18,7 +18,7 @@ def send_signed_native_transaction(
     :param contract: The contract object that we created earlier
     :param contract_address: The address of the contract you want to interact with
     :type contract_address: str
-    :param deposit_amount: The amount of ETH you want to deposit
+    :param deposit_amount: The amount of token you want to deposit
     :type deposit_amount: str
     :return: The transaction hash is being returned.
     """

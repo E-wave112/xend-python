@@ -130,3 +130,6 @@ dmypy.json
 *.sh
 *.html
 test*
+
+junk*
+class_methods*

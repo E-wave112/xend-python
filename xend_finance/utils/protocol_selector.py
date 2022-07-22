@@ -9,7 +9,7 @@ def get_protocol_essentials(protocols: List[Protocols], protocol_name: Union[str
     if protocol_name:
         # filter the protocols by protocol_name
         requested_protocol = list(
-            filter(lambda protocol: protocol.code == protocol_name, protocols)
+            filter(lambda protocol: protocol["code"] == protocol_name, protocols)
         )
         if len(requested_protocol) > 0:
             protocol_object = requested_protocol[0]

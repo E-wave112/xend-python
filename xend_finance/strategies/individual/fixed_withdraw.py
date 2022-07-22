@@ -21,7 +21,7 @@ def perform_fixed_withdrawal(private_key: str, provider: str, record_id: int, ad
     """
     try:
         contract = getContract(provider, ABIS["PERSONAL"], addresses.PERSONAL)
-        data = contract.functions.WithdrawFromFixedDeposit(record_id).build_transaction()
+        data = contract.functions.WithdrawFromFixedDeposit(record_id).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.PERSONAL, "WithdrawFromFixedDeposit"
         )

@@ -24,7 +24,7 @@ def create_cooperative_cycle(args: CooperativeCycle, addresses: Addresses):
             max_members,
             False,
             cycle_stake_amount,
-        ).build_transaction()
+        ).transact()
         receipt = send_signed_transaction(
             private_key, provider, data, contract, addresses.COOPERATIVE, "createCycle"
         )

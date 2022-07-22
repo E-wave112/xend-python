@@ -7,6 +7,9 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
 class Group:
+
+    """Class that allows users to access group related functions"""
+
     def __init__(self, provider: str, private_key: str, addresses: Addresses):
         """
         This function initializes the class with the provider, private key, and addresses
@@ -39,6 +42,7 @@ class Group:
                 "group_name": name,
                 "group_symbol": symbol,
             }
+            create_group_args = ArgsCreateGroup(**create_group_args)
             return create_group(create_group_args, self.addresses)
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
@@ -56,6 +60,7 @@ class Group:
                 "provider": self.provider,
                 "group_id": group_id,
             }
+            get_group_args = ArgsGetGroup(**get_group_args)
             return get_group(get_group_args, self.addresses)
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})

@@ -9,6 +9,10 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
 class Xvault:
+    """
+    Class that allows users to access Xvault related functions
+    """
+
     protocol = "xVault"
 
     def __init__(self, assets: List[Any], chain_id: int, private_key: str):
@@ -35,9 +39,7 @@ class Xvault:
             approval_amount = format_amount(amount, self.chain_id, token_name)
             contract = getContract(self.rpc, results["tokenAbi"], results["tokenAddress"])
             # approve the amount of tokens to be spent on the smart contract
-            tx = contract.functions.approve(
-                results["protocolAddress"], approval_amount
-            ).build_transaction()
+            tx = contract.functions.approve(results["protocolAddress"], approval_amount).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
                 self.private_key, self.rpc, tx, contract, results["tokenAddress"], "approve"
@@ -64,7 +66,7 @@ class Xvault:
             deposit_amount = format_amount(amount, self.chain_id, token_name)
             contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
             # approve the amount of tokens to be spent on the smart contract
-            tx = contract.functions.deposit(deposit_amount).build_transaction()
+            tx = contract.functions.deposit(deposit_amount).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
                 self.private_key, self.rpc, tx, contract, results["protocolAddress"], "deposit"
@@ -97,7 +99,7 @@ class Xvault:
             total_deposit = float(share) * float(ppfs_data) / divisor
             withdraw_amount = float(share) * float(amount) / total_deposit
             final_withdraw_amount = math.trunc(withdraw_amount)
-            tx = contract.functions.withdraw(str(final_withdraw_amount)).build_transaction()
+            tx = contract.functions.withdraw(str(final_withdraw_amount)).transact()
             transaction_hash = send_signed_transaction(
                 self.private_key, self.rpc, tx, contract, results["protocolAddress"], "withdraw"
             )
