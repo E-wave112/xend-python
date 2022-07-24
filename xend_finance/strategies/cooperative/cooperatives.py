@@ -6,6 +6,17 @@ from xend_finance.utils.key_address import private_key_to_address
 
 
 def contributions(provider: str, private_key: str, addresses: Addresses):
+    """
+    It returns a list of all the cooperative cycles that the user has contributed to
+
+    :param provider: The URL of the Ethereum node you want to connect to
+    :type provider: str
+    :param private_key: The private key of the user
+    :type private_key: str
+    :param addresses: This is the address of the contract
+    :type addresses: Addresses
+    :return: A list of cooperative cycles that the user has contributed to.
+    """
     try:
         client_address = private_key_to_address(provider, private_key)
         contract = getContract(provider, CYCLES, addresses.CYCLES)
@@ -31,6 +42,17 @@ def contributions(provider: str, private_key: str, addresses: Addresses):
 
 
 def cycles_in_group(group_id: str, provider: str, addresses: Addresses):
+    """
+    This function returns a list of cooperative cycles for a given group
+
+    :param group_id: The group id of the group you want to get the cycles for
+    :type group_id: str
+    :param provider: The provider you're using to connect to the blockchain
+    :type provider: str
+    :param addresses: Addresses
+    :type addresses: Addresses
+    :return: A list of cooperative cycles in a group
+    """
     try:
         contract = getContract(provider, CYCLES, addresses.CYCLES)
         count = contract.functions.getRecordIndexLengthForGroupCycleIndexer(group_id).call()
