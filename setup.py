@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="xend_python_sdk",
-    version="0.1.6",
+    version="0.1.7",
     description="The Xend Finance SDK arms python developers with the ability to build DeFi \
     applications with Xend Finance without needing to understand the complexities  \
     of the underlying blockchain or layer2 infrastructure.",

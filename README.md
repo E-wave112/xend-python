@@ -5,6 +5,7 @@
 
 The Xend Finance SDK arms python developers with the ability to build DeFi applications with [Xend Finance](https://xend.finance/) without needing to understand the complexities of the underlying blockchain or layer2 infrastructure.
 
+> **Note**: For easier navigation, please use the documentation hosted on the [Github Repository](https://github.com/E-wave112/xend-python/blob/main/README.md).
 ## Table of content
 
 - [Want to Contribute](#want-to-contribute)
