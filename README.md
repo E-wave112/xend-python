@@ -1,7 +1,3 @@
-<p align="center">
-    <img title="Xend" height="200" src="https://xend.finance/assets-2/logo.svg" width="50%"/>
-</p>
-
 # Xend-python SDK
 
 ![PyPI](https://img.shields.io/pypi/v/xend-python-sdk)  ![PyPI - License](https://img.shields.io/pypi/l/xend-python-sdk) ![PyPI - Downloads](https://img.shields.io/pypi/dm/xend-python-sdk)
