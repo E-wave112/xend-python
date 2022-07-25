@@ -19,7 +19,12 @@ def join_group(cycle_id: int, provider: str, private_key: str, addresses: Addres
         ).transact()
         # sign the transaction
         send_signed_transaction(
-            private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
+            private_key,
+            provider,
+            approval_data,
+            token_contract,
+            addresses.TOKEN,
+            "approve",
         )
         # execute the join esusu contract function
         data = contract.functions.JoinEsusu(cycle_id).transact()

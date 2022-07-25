@@ -1,7 +1,13 @@
 from xend_finance.models.schemas import Options, Addresses, EsusuCycle
-from xend_finance.strategies.esusu.contributions import no_of_contributions, esusu_contributions
+from xend_finance.strategies.esusu.contributions import (
+    no_of_contributions,
+    esusu_contributions,
+)
 from xend_finance.strategies.esusu.create import create_esusu_cycle
-from xend_finance.strategies.esusu.created_cycles_count import cycles_count, interest_capital
+from xend_finance.strategies.esusu.created_cycles_count import (
+    cycles_count,
+    interest_capital,
+)
 from xend_finance.strategies.esusu.esusu_identifier import get_esusu_id
 from xend_finance.strategies.esusu.info import esusu_cycles_in_group, esusu_info
 from xend_finance.strategies.esusu.join import join_group
@@ -17,7 +23,12 @@ class Esusu:
     """Class that allows users to access esusu related functions"""
 
     def __init__(
-        self, provider: str, private_key: str, options: Options, addresses: Addresses, protocol: str
+        self,
+        provider: str,
+        private_key: str,
+        options: Options,
+        addresses: Addresses,
+        protocol: str,
     ):
         self.provider = provider
         self.private_key = private_key
@@ -70,7 +81,9 @@ class Esusu:
         :return: The cycle id is being returned.
         """
         try:
-            return get_esusu_id(position, self.provider, self.private_key, self.addresses)
+            return get_esusu_id(
+                position, self.provider, self.private_key, self.addresses
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 
@@ -115,7 +128,9 @@ class Esusu:
         :return: The transaction hash
         """
         try:
-            return start_esusu_cycle(cycle_id, self.provider, self.private_key, self.addresses)
+            return start_esusu_cycle(
+                cycle_id, self.provider, self.private_key, self.addresses
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 
@@ -128,7 +143,9 @@ class Esusu:
         :return: The withdraw_interest function is being returned.
         """
         try:
-            return withdraw_interest(esusu_id, self.provider, self.private_key, self.addresses)
+            return withdraw_interest(
+                esusu_id, self.provider, self.private_key, self.addresses
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 
@@ -143,7 +160,9 @@ class Esusu:
         :return: The withdraw_capital function is being returned.
         """
         try:
-            return withdraw_capital(cycle_id, self.provider, self.private_key, self.addresses)
+            return withdraw_capital(
+                cycle_id, self.provider, self.private_key, self.addresses
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 
@@ -159,7 +178,9 @@ class Esusu:
         :return: The function is_member_of_cycle() returns a boolean value.
         """
         try:
-            return check_if_member(cycle_id, self.private_key, self.provider, self.addresses)
+            return check_if_member(
+                cycle_id, self.private_key, self.provider, self.addresses
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 
@@ -173,7 +194,9 @@ class Esusu:
         :return: the amount of interest accrued for the cycle.
         """
         try:
-            return interest_capital(cycle_id, self.provider, self.private_key, self.addresses)
+            return interest_capital(
+                cycle_id, self.provider, self.private_key, self.addresses
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 

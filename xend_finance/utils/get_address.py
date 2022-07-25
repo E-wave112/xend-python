@@ -35,13 +35,25 @@ def get_bsc_mainnet_addresses() -> List[Protocols]:
                     ),
                     "GROUPS": get_address_by_name(address["addresses"], "groups"),
                     "CYCLES": get_address_by_name(address["addresses"], "cycles"),
-                    "ESUSU_SERVICE": get_address_by_name(address["addresses"], "esusu_service"),
-                    "ESUSU_STORAGE": get_address_by_name(address["addresses"], "esusu_storage"),
-                    "ESUSU_ADAPTER": get_address_by_name(address["addresses"], "esusu_adapter"),
-                    "COOPERATIVE": get_address_by_name(address["addresses"], "cooperative"),
+                    "ESUSU_SERVICE": get_address_by_name(
+                        address["addresses"], "esusu_service"
+                    ),
+                    "ESUSU_STORAGE": get_address_by_name(
+                        address["addresses"], "esusu_storage"
+                    ),
+                    "ESUSU_ADAPTER": get_address_by_name(
+                        address["addresses"], "esusu_adapter"
+                    ),
+                    "COOPERATIVE": get_address_by_name(
+                        address["addresses"], "cooperative"
+                    ),
                     "PERSONAL": get_address_by_name(address["addresses"], "personal"),
-                    "CLIENT_RECORD": get_address_by_name(address["addresses"], "client_record"),
-                    "XEND_TOKEN": get_address_by_name(address["addresses"], "xend_token"),
+                    "CLIENT_RECORD": get_address_by_name(
+                        address["addresses"], "client_record"
+                    ),
+                    "XEND_TOKEN": get_address_by_name(
+                        address["addresses"], "xend_token"
+                    ),
                     "TOKEN": get_address_by_name(address["addresses"], "token"),
                     "PROTOCOL_CURRENCY": get_address_by_name(
                         address["addresses"], "protocol_currency"

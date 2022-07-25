@@ -5,7 +5,9 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
-def withdraw_interest(esusu_id: int, provider: str, private_key: str, addresses: Addresses):
+def withdraw_interest(
+    esusu_id: int, provider: str, private_key: str, addresses: Addresses
+):
     try:
         contract = getContract(provider, ESUSU_SERVICE, addresses.ESUSU_SERVICE)
         data = contract.functions.WithdrawROIFromEsusuCycle(esusu_id).transact()
@@ -17,7 +19,11 @@ def withdraw_interest(esusu_id: int, provider: str, private_key: str, addresses:
             addresses.ESUSU_SERVICE,
             "WithdrawROIFromEsusuCycle",
         )
-        return {"status": "success", "message": "Interest withdrawn successfully", "data": receipt}
+        return {
+            "status": "success",
+            "message": "Interest withdrawn successfully",
+            "data": receipt,
+        }
     except BaseError as e:
         raise BaseError(
             {"status": "error", "message": "Interest could not be withdrawn", "data": e}

@@ -1,2 +1,7 @@
 include README.md
 include reader/*.txt
+
+include xend_finance/strategies/abis/*.json
+include xend_finance/strategies/abis/V2XAuto/*.json
+include xend_finance/strategies/abis/V2XAutoMatic/*.json
+include xend_finance/strategies/abis/V2XVault/*.json

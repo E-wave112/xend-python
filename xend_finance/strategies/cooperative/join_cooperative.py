@@ -7,7 +7,11 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
 def join_a_cooperative(
-    cycle_id: int, number_of_stakes: int, provider: str, private_key: str, addresses: Addresses
+    cycle_id: int,
+    number_of_stakes: int,
+    provider: str,
+    private_key: str,
+    addresses: Addresses,
 ):
     try:
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
@@ -25,7 +29,12 @@ def join_a_cooperative(
             addresses.COOPERATIVE, deposit_amount
         ).transact()
         send_signed_transaction(
-            private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
+            private_key,
+            provider,
+            approval_data,
+            token_contract,
+            addresses.TOKEN,
+            "approve",
         )
 
         # initiate the join cooperative smart contract transaction
@@ -35,4 +44,6 @@ def join_a_cooperative(
         )
         return {"status": "success", "data": receipt}
     except BaseError as e:
-        raise BaseError({"status": "error", "message": "Could not join cooperative", "data": e})
+        raise BaseError(
+            {"status": "error", "message": "Could not join cooperative", "data": e}
+        )

@@ -8,7 +8,11 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
 def perform_flexible_withdraw(
-    private_key: str, provider: str, amount: Union[str, float], addresses: Addresses, protocol: str
+    private_key: str,
+    provider: str,
+    amount: Union[str, float],
+    addresses: Addresses,
+    protocol: str,
 ):
     """
     It takes a private key, a provider, an amount, an Addresses object, and a protocol, and returns

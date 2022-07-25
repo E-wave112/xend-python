@@ -5,7 +5,9 @@ from xend_finance.environment.testnet import testnet_protocols
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
-def get_protocol_essentials(protocols: List[Protocols], protocol_name: Union[str, None] = None):
+def get_protocol_essentials(
+    protocols: List[Protocols], protocol_name: Union[str, None] = None
+):
     if protocol_name:
         # filter the protocols by protocol_name
         requested_protocol = list(

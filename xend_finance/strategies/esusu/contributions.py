@@ -21,7 +21,9 @@ def no_of_contributions(provider: str, private_key: str, addresses: Addresses):
     try:
         contract = getContract(provider, ESUSU_STORAGE, addresses.ESUSU_STORAGE)
         client_address = private_key_to_address(provider, private_key)
-        contributions = contract.functions.GetCycleIndexFromCycleMember(client_address).call()
+        contributions = contract.functions.GetCycleIndexFromCycleMember(
+            client_address
+        ).call()
         return {"status": "success", "data": int(contributions)}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})
@@ -50,9 +52,11 @@ def esusu_contributions(provider: str, private_key: str, addresses: Addresses):
         contributions = int(esusu_contributed_list)
         contributions_list = []
         for cycle in range(1, contributions):
-            contribution_cycle_id = contract.functions.GetCycleIdFromCycleIndexAndCycleMember(
-                cycle, client_address
-            ).call()
+            contribution_cycle_id = (
+                contract.functions.GetCycleIdFromCycleIndexAndCycleMember(
+                    cycle, client_address
+                ).call()
+            )
             contribution_cycle = esusu_info(contribution_cycle_id, provider, addresses)
             # get the roi balance of the contribution cycle
             roi_balance = contract.functions.GetMemberCycleToBeneficiaryMapping(
@@ -63,7 +67,11 @@ def esusu_contributions(provider: str, private_key: str, addresses: Addresses):
             ).call()
             # esusu_contributed = esusu_info(provider, private_key, addresses, esusu_id)
             contributions_list.append(
-                {"roi_balance": roi_balance, "capital": capital, "cycle": contribution_cycle}
+                {
+                    "roi_balance": roi_balance,
+                    "capital": capital,
+                    "cycle": contribution_cycle,
+                }
             )
         return {"status": "success", "data": contributions_list}
     except BaseError as e:

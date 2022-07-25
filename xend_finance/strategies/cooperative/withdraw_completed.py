@@ -5,12 +5,19 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
-def complete_withdrawal(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+def complete_withdrawal(
+    cycle_id: int, provider: str, private_key: str, addresses: Addresses
+):
     try:
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
         data = contract.functions.withdrawFromCycle(cycle_id).transact()
         receipt = send_signed_transaction(
-            private_key, provider, data, contract, addresses.COOPERATIVE, "withdrawFromCycle"
+            private_key,
+            provider,
+            data,
+            contract,
+            addresses.COOPERATIVE,
+            "withdrawFromCycle",
         )
         return {
             "status": "success",
@@ -18,4 +25,6 @@ def complete_withdrawal(cycle_id: int, provider: str, private_key: str, addresse
             "data": receipt,
         }
     except BaseError as e:
-        raise BaseError({"status": "error", "message": "Could not complete withdrawal", "data": e})
+        raise BaseError(
+            {"status": "error", "message": "Could not complete withdrawal", "data": e}
+        )

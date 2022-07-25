@@ -21,13 +21,17 @@ def cycles_count(provider: str, private_key: str, addresses: Addresses):
     try:
         contract = getContract(provider, ESUSU_STORAGE, addresses.ESUSU_STORAGE)
         client_address = private_key_to_address(provider, private_key)
-        cycles_count = contract.functions.GetCycleIndexFromCycleCreator(client_address).call()
+        cycles_count = contract.functions.GetCycleIndexFromCycleCreator(
+            client_address
+        ).call()
         return {"status": "success", "data": int(cycles_count)}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})
 
 
-def interest_capital(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+def interest_capital(
+    cycle_id: int, provider: str, private_key: str, addresses: Addresses
+):
     """
     `interest_capital` returns the capital and interest of a member in a cycle
 
