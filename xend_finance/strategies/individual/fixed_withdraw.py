@@ -5,7 +5,9 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
-def perform_fixed_withdrawal(private_key: str, provider: str, record_id: int, addresses: Addresses):
+def perform_fixed_withdrawal(
+    private_key: str, provider: str, record_id: int, addresses: Addresses
+):
     """
     > This function allows a user to withdraw from a fixed deposit
 
@@ -23,7 +25,12 @@ def perform_fixed_withdrawal(private_key: str, provider: str, record_id: int, ad
         contract = getContract(provider, ABIS["PERSONAL"], addresses.PERSONAL)
         data = contract.functions.WithdrawFromFixedDeposit(record_id).transact()
         receipt = send_signed_transaction(
-            private_key, provider, data, contract, addresses.PERSONAL, "WithdrawFromFixedDeposit"
+            private_key,
+            provider,
+            data,
+            contract,
+            addresses.PERSONAL,
+            "WithdrawFromFixedDeposit",
         )
         return {"status": "success", "data": receipt}
     except BaseError as e:

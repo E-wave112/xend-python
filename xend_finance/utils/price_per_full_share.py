@@ -18,5 +18,4 @@ def price_per_full_share(provider: str, contract_address: str):
         price_per_full_share = contract.functions.GetPricePerFullShare().call()
         return {"status": "success", "data": price_per_full_share}
     except BaseError as e:
-        print(e)
         raise BaseError({"status": "error", "message": e})

@@ -2,9 +2,15 @@ from xend_finance.models.schemas import Fixed, Options, Addresses
 from xend_finance.strategies.individual.fixed_deposit import create_fixed_deposit
 from xend_finance.strategies.individual.fixed_withdraw import perform_fixed_withdrawal
 from xend_finance.strategies.individual.flexible_deposit import create_flexible_deposit
-from xend_finance.strategies.individual.flexible_withdrawal import perform_flexible_withdraw
-from xend_finance.strategies.individual.get_fixed_deposit_record import fixed_deposit_record
-from xend_finance.strategies.individual.get_flexible_deposit_record import flexible_deposit_record
+from xend_finance.strategies.individual.flexible_withdrawal import (
+    perform_flexible_withdraw,
+)
+from xend_finance.strategies.individual.get_fixed_deposit_record import (
+    fixed_deposit_record,
+)
+from xend_finance.strategies.individual.get_flexible_deposit_record import (
+    flexible_deposit_record,
+)
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
@@ -14,7 +20,12 @@ class Personal:
     """
 
     def __init__(
-        self, provider: str, private_key: str, options: Options, address: Addresses, protocol: str
+        self,
+        provider: str,
+        private_key: str,
+        options: Options,
+        address: Addresses,
+        protocol: str,
     ):
         """
         `__init__` is a special method that is called when an instance of a class is created
@@ -92,7 +103,9 @@ class Personal:
         :return: The flexible deposit record is being returned.
         """
         try:
-            return flexible_deposit_record(self.provider, self.private_key, self.address)
+            return flexible_deposit_record(
+                self.provider, self.private_key, self.address
+            )
         except BaseError as e:
             raise BaseError({"status": "error", "message": e})
 

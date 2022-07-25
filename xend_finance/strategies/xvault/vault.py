@@ -37,12 +37,21 @@ class Xvault:
                 raise BaseError({"message": "Token not found"})
 
             approval_amount = format_amount(amount, self.chain_id, token_name)
-            contract = getContract(self.rpc, results["tokenAbi"], results["tokenAddress"])
+            contract = getContract(
+                self.rpc, results["tokenAbi"], results["tokenAddress"]
+            )
             # approve the amount of tokens to be spent on the smart contract
-            tx = contract.functions.approve(results["protocolAddress"], approval_amount).transact()
+            tx = contract.functions.approve(
+                results["protocolAddress"], approval_amount
+            ).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
-                self.private_key, self.rpc, tx, contract, results["tokenAddress"], "approve"
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["tokenAddress"],
+                "approve",
             )
             return transaction_hash
         except BaseError as e:
@@ -64,12 +73,19 @@ class Xvault:
                 raise BaseError({"message": "Token not found"})
 
             deposit_amount = format_amount(amount, self.chain_id, token_name)
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             # approve the amount of tokens to be spent on the smart contract
             tx = contract.functions.deposit(deposit_amount).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
-                self.private_key, self.rpc, tx, contract, results["protocolAddress"], "deposit"
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["protocolAddress"],
+                "deposit",
             )
             return transaction_hash
         except BaseError as e:
@@ -89,7 +105,9 @@ class Xvault:
             results = self.filter_token(token_name, self.chain_id, self.protocol)
             if not results:
                 raise BaseError({"message": "Token not found"})
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             client_address = private_key_to_address(self.rpc, self.private_key)
             share = contract.functions.balanceOf(client_address).call()
             contract_ppfs = results["ppfsMethod"]
@@ -101,7 +119,12 @@ class Xvault:
             final_withdraw_amount = math.trunc(withdraw_amount)
             tx = contract.functions.withdraw(str(final_withdraw_amount)).transact()
             transaction_hash = send_signed_transaction(
-                self.private_key, self.rpc, tx, contract, results["protocolAddress"], "withdraw"
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["protocolAddress"],
+                "withdraw",
             )
             return transaction_hash
         except BaseError as e:
@@ -119,7 +142,9 @@ class Xvault:
             results = self.filter_token(token_name, self.chain_id, self.protocol)
             if not results:
                 raise BaseError({"message": "Token not found"})
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             contract_method = results["ppfsMethod"]
             ppfs = contract.functions[contract_method]
             ppfs_data = ppfs().call()
@@ -140,7 +165,9 @@ class Xvault:
             if not results:
                 raise BaseError({"message": "Token not found"})
             client_address = private_key_to_address(self.rpc, self.private_key)
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             balance = contract.functions.balanceOf(client_address).call()
             return balance
         except BaseError as e:

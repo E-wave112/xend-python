@@ -26,11 +26,15 @@ def contributions(provider: str, private_key: str, addresses: Addresses):
         cycles_list = []
         for index in range(int(count)):
             cycles_index = {}
-            cycles_index = contract.functions.getRecordIndexForCycleMembersIndexerByDepositor(
-                client_address, index
-            ).call()
+            cycles_index = (
+                contract.functions.getRecordIndexForCycleMembersIndexerByDepositor(
+                    client_address, index
+                ).call()
+            )
             # get the cycles info by it's general index
-            cycles_info = contract.functions.getCycleMember(str(cycles_index["1"])).call()
+            cycles_info = contract.functions.getCycleMember(
+                str(cycles_index["1"])
+            ).call()
             # get the main cycles info by it's id
             cycle = contract.functions.getCycleInfoById(cycles_info["cycleId"]).call()
             cycle_dict = {**cycles_info, **cycle}
@@ -55,7 +59,9 @@ def cycles_in_group(group_id: str, provider: str, addresses: Addresses):
     """
     try:
         contract = getContract(provider, CYCLES, addresses.CYCLES)
-        count = contract.functions.getRecordIndexLengthForGroupCycleIndexer(group_id).call()
+        count = contract.functions.getRecordIndexLengthForGroupCycleIndexer(
+            group_id
+        ).call()
         cycles_list = []
         if int(count) > 0:
             for index in range(int(count)):
@@ -63,7 +69,9 @@ def cycles_in_group(group_id: str, provider: str, addresses: Addresses):
                     group_id, index
                 ).call()
                 if group_exists[0]:
-                    cycles_info = contract.functions.getCycleInfoByIndex(group_exists[1]).call()
+                    cycles_info = contract.functions.getCycleInfoByIndex(
+                        group_exists[1]
+                    ).call()
 
                 cycles_list.append(cycles_info)
             return {"status": "success", "data": cycles_list}

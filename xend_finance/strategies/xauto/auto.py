@@ -6,7 +6,9 @@ from xend_finance.utils.helpers import check_chain_id, format_amount
 from typing import Any, List
 from xend_finance.utils.key_address import private_key_to_address
 from xend_finance.utils.send_signed_transaction import send_signed_transaction
-from xend_finance.utils.sendsigned_native_transaction import send_signed_native_transaction
+from xend_finance.utils.sendsigned_native_transaction import (
+    send_signed_native_transaction,
+)
 
 
 class Xauto:
@@ -38,12 +40,21 @@ class Xauto:
                 raise BaseError({"message": "Token not found"})
 
             approval_amount = format_amount(amount, self.chain_id, token_name)
-            contract = getContract(self.rpc, results["tokenAbi"], results["tokenAddress"])
+            contract = getContract(
+                self.rpc, results["tokenAbi"], results["tokenAddress"]
+            )
             # approve the amount of tokens to be spent on the smart contract
-            tx = contract.functions.approve(results["protocolAddress"], approval_amount).transact()
+            tx = contract.functions.approve(
+                results["protocolAddress"], approval_amount
+            ).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
-                self.private_key, self.rpc, tx, contract, results["tokenAddress"], "approve"
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["tokenAddress"],
+                "approve",
             )
             return transaction_hash
         except BaseError as e:
@@ -65,12 +76,19 @@ class Xauto:
                 raise BaseError({"message": "Token not found"})
 
             deposit_amount = format_amount(amount, self.chain_id, token_name)
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             # approve the amount of tokens to be spent on the smart contract
             tx = contract.functions.deposit(deposit_amount).transact()
             #  get the transaction hash
             transaction_hash = send_signed_transaction(
-                self.private_key, self.rpc, tx, contract, results["protocolAddress"], "deposit"
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["protocolAddress"],
+                "deposit",
             )
             return transaction_hash
         except BaseError as e:
@@ -88,13 +106,20 @@ class Xauto:
             results = self.filter_token(token_name, self.chain_id, self.protocol)
             if not results:
                 raise BaseError({"message": "Token not found"})
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             # approve the amount of tokens to be spent on the smart contract
             deposit_amount = format_amount(amount, self.chain_id, token_name)
             tx = contract.functions.deposit().transact()
             #  get the transaction hash
             transaction_hash = send_signed_native_transaction(
-                self.private_key, self.rpc, tx, contract, results["protocolAddress"], deposit_amount
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["protocolAddress"],
+                deposit_amount,
             )
             return transaction_hash
         except BaseError as e:
@@ -114,7 +139,9 @@ class Xauto:
             results = self.filter_token(token_name, self.chain_id, self.protocol)
             if not results:
                 raise BaseError({"message": "Token not found"})
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             client_address = private_key_to_address(self.rpc, self.private_key)
             share = contract.functions.balanceOf(client_address).call()
             contract_ppfs = results["ppfsMethod"]
@@ -126,7 +153,12 @@ class Xauto:
             final_withdraw_amount = math.trunc(withdraw_amount)
             tx = contract.functions.withdraw(str(final_withdraw_amount)).transact()
             transaction_hash = send_signed_transaction(
-                self.private_key, self.rpc, tx, contract, results["protocolAddress"], "withdraw"
+                self.private_key,
+                self.rpc,
+                tx,
+                contract,
+                results["protocolAddress"],
+                "withdraw",
             )
             return transaction_hash
         except BaseError as e:
@@ -144,7 +176,9 @@ class Xauto:
             results = self.filter_token(token_name, self.chain_id, self.protocol)
             if not results:
                 raise BaseError({"message": "Token not found"})
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             contract_method = results["ppfsMethod"]
             ppfs = contract.functions[contract_method]
             ppfs_data = ppfs().call()
@@ -165,7 +199,9 @@ class Xauto:
             if not results:
                 raise BaseError({"message": "Token not found"})
             client_address = private_key_to_address(self.rpc, self.private_key)
-            contract = getContract(self.rpc, results["protocolAbi"], results["protocolAddress"])
+            contract = getContract(
+                self.rpc, results["protocolAbi"], results["protocolAddress"]
+            )
             balance = contract.functions.balanceOf(client_address).call()
             return balance
         except BaseError as e:

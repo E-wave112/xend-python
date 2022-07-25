@@ -3,7 +3,12 @@ from xend_finance.utils.web3_utils import initialize_web3
 
 
 def send_signed_transaction(
-    private_key: str, provider: str, tx, contract, contract_address: str, contract_method: str
+    private_key: str,
+    provider: str,
+    tx,
+    contract,
+    contract_address: str,
+    contract_method: str,
 ) -> str:
     """
     This function takes in a private key, a provider, a transaction, a contract,
@@ -44,6 +49,8 @@ def send_signed_transaction(
     }
     signed_transaction = web3.eth.sign_transaction(transaction_data, private_key)
     # send the signed transaction
-    reciept_for_transaction = web3.eth.send_raw_transaction(signed_transaction.rawTransaction)
+    reciept_for_transaction = web3.eth.send_raw_transaction(
+        signed_transaction.rawTransaction
+    )
     # convert the transaction hash to readable format and return it
     return web3.toHex(reciept_for_transaction)

@@ -6,7 +6,10 @@ from xend_finance.strategies.xauto.auto import Xauto
 from xend_finance.strategies.xvault.vault import Xvault
 from xend_finance.models.schemas import Addresses, Options
 from xend_finance.utils.balance import get_balance
-from xend_finance.utils.get_address import get_bsc_mainnet_addresses, get_layer2_protocols
+from xend_finance.utils.get_address import (
+    get_bsc_mainnet_addresses,
+    get_layer2_protocols,
+)
 from xend_finance.utils.helpers import check_chain_id
 from xend_finance.utils.price_per_full_share import price_per_full_share
 from xend_finance.utils.protocol_selector import protocol_selector
@@ -31,7 +34,6 @@ class XendFinance:
         selector = protocol_selector(self.options)
         self.protocol = selector["name"]
         addresses_selector: Addresses = Addresses(**selector["addresses"])
-        # addresses_selector.PERSONAL = "0x4A37F2aE81AE04dcAF974C245B3d73C8f01C5D46"
         self.addresses = addresses_selector
         self.share_currency = addresses_selector.PROTOCOL_CURRENCY
         self.available_protocols = selector["available"]

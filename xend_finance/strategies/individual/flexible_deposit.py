@@ -31,10 +31,17 @@ def create_flexible_deposit(
         deposit_amount = Web3.toWei(deposit_amount, "ether")
         # approve the transaction
         personal = addresses.PERSONAL
-        approval_data = token_contract.functions.approve(personal, deposit_amount).transact()
+        approval_data = token_contract.functions.approve(
+            personal, deposit_amount
+        ).transact()
         # sign the transaction
         send_signed_transaction(
-            private_key, provider, approval_data, token_contract, addresses.TOKEN, "approve"
+            private_key,
+            provider,
+            approval_data,
+            token_contract,
+            addresses.TOKEN,
+            "approve",
         )
 
         data = contract.functions.deposit().transact()

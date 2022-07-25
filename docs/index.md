@@ -1,10 +1,6 @@
-<p align="center">
-    <img title="Xend" height="200" src="https://xend.finance/assets-2/logo.svg" width="50%"/>
-</p>
-
 # Xend-python SDK
 
-![PyPI](https://img.shields.io/pypi/v/xend-python-sdk)  ![PyPI - License](https://img.shields.io/pypi/l/xend-python-sdk) ![PyPI - Downloads](https://img.shields.io/pypi/dm/xend-python-sdk)
+![PyPI](https://img.shields.io/pypi/v/xend_python_sdk)  ![PyPI - License](https://img.shields.io/pypi/l/xend-python-sdk) ![PyPI - Downloads](https://img.shields.io/pypi/dm/xend-python-sdk)
 
 
 The Xend Finance SDK arms python developers with the ability to build DeFi applications with [Xend Finance](https://xend.finance/) without needing to understand the complexities of the underlying blockchain or layer2 infrastructure.
@@ -26,14 +22,14 @@ Contributions are welcome! Kindly refer to the [contribution guidelines](https:/
 To install this sdk, run the command:
 
 ```
-pip install xend-python-sdk
+pip install xend_python_sdk
 ```
 
 ## Usage
 
 ```py
 import xend_finance
-from xend_finance import XendFinance
+from xend_finance.main import XendFinance
 ```
 
 Instantiate the XendFinance class like so:

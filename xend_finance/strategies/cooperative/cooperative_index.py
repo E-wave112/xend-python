@@ -1,14 +1,25 @@
 from typing import Dict, Union
 from xend_finance.models.schemas import Addresses, CooperativeCycle, Options
-from xend_finance.strategies.cooperative.cooperative_group import create_cooperative_group
+from xend_finance.strategies.cooperative.cooperative_group import (
+    create_cooperative_group,
+)
 from xend_finance.strategies.cooperative.cooperative_info import get_cooperative_info
 from xend_finance.strategies.cooperative.cooperative_member import is_cooperative_member
-from xend_finance.strategies.cooperative.cooperatives import contributions, cycles_in_group
-from xend_finance.strategies.cooperative.create_cooperative import create_cooperative_cycle
+from xend_finance.strategies.cooperative.cooperatives import (
+    contributions,
+    cycles_in_group,
+)
+from xend_finance.strategies.cooperative.create_cooperative import (
+    create_cooperative_cycle,
+)
 from xend_finance.strategies.cooperative.join_cooperative import join_a_cooperative
-from xend_finance.strategies.cooperative.start_cooperative import start_cooperative_cycle
+from xend_finance.strategies.cooperative.start_cooperative import (
+    start_cooperative_cycle,
+)
 from xend_finance.strategies.cooperative.withdraw_completed import complete_withdrawal
-from xend_finance.strategies.cooperative.withdraw_ongoing import perform_ongoing_withdrawal
+from xend_finance.strategies.cooperative.withdraw_ongoing import (
+    perform_ongoing_withdrawal,
+)
 from xend_finance.strategies.group.groups import get_esusu_groups
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
@@ -19,7 +30,12 @@ class Cooperative:
     """
 
     def __init__(
-        self, provider: str, private_key: str, options: Options, addresses: Addresses, protocol: str
+        self,
+        provider: str,
+        private_key: str,
+        options: Options,
+        addresses: Addresses,
+        protocol: str,
     ):
         self.private_key = private_key
         self.provider = provider
@@ -43,7 +59,11 @@ class Cooperative:
             return create_cooperative_cycle(args, self.addresses)
         except BaseError as e:
             raise BaseError(
-                {"status": "error", "message": "Could not create cooperative", "data": e}
+                {
+                    "status": "error",
+                    "message": "Could not create cooperative",
+                    "data": e,
+                }
             )
 
     def join(self, cycle_id: int, number_of_stakes: int):
@@ -61,10 +81,16 @@ class Cooperative:
 
         try:
             return join_a_cooperative(
-                cycle_id, number_of_stakes, self.provider, self.private_key, self.addresses
+                cycle_id,
+                number_of_stakes,
+                self.provider,
+                self.private_key,
+                self.addresses,
             )
         except BaseError as e:
-            raise BaseError({"status": "error", "message": "Could not join cooperative", "data": e})
+            raise BaseError(
+                {"status": "error", "message": "Could not join cooperative", "data": e}
+            )
 
     def info(self, cycle_id: int):
         """
@@ -79,7 +105,11 @@ class Cooperative:
             return get_cooperative_info(cycle_id, self.provider, self.addresses)
         except BaseError as e:
             raise BaseError(
-                {"status": "error", "message": "Could not get cooperative info", "data": e}
+                {
+                    "status": "error",
+                    "message": "Could not get cooperative info",
+                    "data": e,
+                }
             )
 
     def cycle_member_exist(self, cycle_id: int):
@@ -92,9 +122,13 @@ class Cooperative:
         """
 
         try:
-            return is_cooperative_member(cycle_id, self.private_key, self.provider, self.addresses)
+            return is_cooperative_member(
+                cycle_id, self.private_key, self.provider, self.addresses
+            )
         except BaseError as e:
-            raise BaseError({"status": "error", "message": "Could not check if member", "data": e})
+            raise BaseError(
+                {"status": "error", "message": "Could not check if member", "data": e}
+            )
 
     def start_cycle(self, cycle_id: int):
         """
@@ -111,7 +145,9 @@ class Cooperative:
                 cycle_id, self.provider, self.private_key, self.addresses
             )
         except BaseError as e:
-            raise BaseError({"status": "error", "message": "Could not start cycle", "data": e})
+            raise BaseError(
+                {"status": "error", "message": "Could not start cycle", "data": e}
+            )
 
     def withdraw_from_ongoing_cycle(self, cycle_id: int):
         """
@@ -131,7 +167,11 @@ class Cooperative:
             )
         except BaseError as e:
             raise BaseError(
-                {"status": "error", "message": "Could not withdraw from ongoing cycle", "data": e}
+                {
+                    "status": "error",
+                    "message": "Could not withdraw from ongoing cycle",
+                    "data": e,
+                }
             )
 
     def withdraw_completed(self, cycle_id: int):
@@ -145,10 +185,16 @@ class Cooperative:
         :return: The withdraw_completed function is being returned.
         """
         try:
-            return complete_withdrawal(cycle_id, self.provider, self.private_key, self.addresses)
+            return complete_withdrawal(
+                cycle_id, self.provider, self.private_key, self.addresses
+            )
         except BaseError as e:
             raise BaseError(
-                {"status": "error", "message": "Could not withdraw from completed cycle", "data": e}
+                {
+                    "status": "error",
+                    "message": "Could not withdraw from completed cycle",
+                    "data": e,
+                }
             )
 
     def create_group(self, group_name: str, symbol: str):
@@ -166,7 +212,9 @@ class Cooperative:
                 group_name, symbol, self.provider, self.private_key, self.addresses
             )
         except BaseError as e:
-            raise BaseError({"status": "error", "message": "Could not create group", "data": e})
+            raise BaseError(
+                {"status": "error", "message": "Could not create group", "data": e}
+            )
 
     def get_cooperative_groups(self):
         """
@@ -176,7 +224,9 @@ class Cooperative:
         try:
             return get_esusu_groups(self.provider, self.private_key, self.addresses)
         except BaseError as e:
-            raise BaseError({"status": "error", "message": "Could not get groups", "data": e})
+            raise BaseError(
+                {"status": "error", "message": "Could not get groups", "data": e}
+            )
 
     def contributions(self):
         """
@@ -202,5 +252,9 @@ class Cooperative:
             return cycles_in_group(group_id, self.provider, self.addresses)
         except BaseError as e:
             raise BaseError(
-                {"status": "error", "message": "Could not get cycles in group", "data": e}
+                {
+                    "status": "error",
+                    "message": "Could not get cycles in group",
+                    "data": e,
+                }
             )

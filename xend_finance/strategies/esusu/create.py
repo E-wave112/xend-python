@@ -36,10 +36,23 @@ def create_esusu_cycle(args: EsusuCycle, addresses: Addresses):
             max_members,
         ).transact()
         receipt = send_signed_transaction(
-            private_key, provider, data, contract, addresses.ESUSU_SERVICE, "CreateEsusu"
+            private_key,
+            provider,
+            data,
+            contract,
+            addresses.ESUSU_SERVICE,
+            "CreateEsusu",
         )
-        return {"status": "success", "message": "Esusu cycle created successfully", "data": receipt}
+        return {
+            "status": "success",
+            "message": "Esusu cycle created successfully",
+            "data": receipt,
+        }
     except BaseError as e:
         raise BaseError(
-            {"status": "error", "message": "Esusu cycle could not be created", "data": e}
+            {
+                "status": "error",
+                "message": "Esusu cycle could not be created",
+                "data": e,
+            }
         )

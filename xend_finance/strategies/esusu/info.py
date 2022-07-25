@@ -16,13 +16,17 @@ def esusu_info(esusu_id: int, provider: str, addresses: Addresses):
 def esusu_cycles_in_group(group_id: int, provider: str, addresses: Addresses):
     try:
         contract = getContract(provider, ESUSU_STORAGE, addresses.ESUSU_STORAGE)
-        cycles_in_group_count = int(contract.functions.GetCycleIndexFromGroupId(group_id).call())
+        cycles_in_group_count = int(
+            contract.functions.GetCycleIndexFromGroupId(group_id).call()
+        )
         # get cycles in a group
         cycles = []
         if cycles_in_group_count > 0:
             for cycle in range(cycles_in_group_count, 0, -1):
                 id_of_esusu_by_position_in_group = (
-                    contract.functions.GetCycleIdFromCycleIndexAndGroupId(group_id, cycle).call()
+                    contract.functions.GetCycleIdFromCycleIndexAndGroupId(
+                        group_id, cycle
+                    ).call()
                 )
                 data = esusu_info(id_of_esusu_by_position_in_group, provider, addresses)
                 cycles.append(data)

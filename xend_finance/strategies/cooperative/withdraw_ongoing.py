@@ -25,4 +25,6 @@ def perform_ongoing_withdrawal(
             "data": receipt,
         }
     except BaseError as e:
-        raise BaseError({"status": "error", "message": "Could not perform withdrawal", "data": e})
+        raise BaseError(
+            {"status": "error", "message": "Could not perform withdrawal", "data": e}
+        )

@@ -23,7 +23,9 @@ def create_group(arg: ArgsCreateGroup, addresses: Addresses):
     try:
         contract = getContract(provider, GROUPS, addresses.GROUPS)
         client_address = private_key_to_address(provider, private_key)
-        data = contract.functions.createGroup(group_name, group_symbol, client_address).transact()
+        data = contract.functions.createGroup(
+            group_name, group_symbol, client_address
+        ).transact()
         transaction_hash = send_signed_transaction(
             private_key, provider, data, contract, addresses.GROUPS, "createGroup"
         )

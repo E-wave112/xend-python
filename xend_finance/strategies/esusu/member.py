@@ -5,7 +5,9 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 from xend_finance.utils.key_address import private_key_to_address
 
 
-def check_if_member(cycle_id: int, private_key: str, provider: str, addresses: Addresses):
+def check_if_member(
+    cycle_id: int, private_key: str, provider: str, addresses: Addresses
+):
     client_address = private_key_to_address(provider, private_key)
     try:
         contract = getContract(provider, ESUSU_STORAGE, addresses.ESUSU_STORAGE)
