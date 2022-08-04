@@ -1,0 +1,1 @@
+# from xend_finance.strategies.cooperative.cooperative_index import Cooperative
