@@ -129,7 +129,11 @@ dmypy.json
 .pyre/
 *.sh
 *.html
-test*
+test.py
+test.ts
+tester*
+test.js
+!/tests/*
 tester.py
 
 junk*
