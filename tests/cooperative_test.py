@@ -1,7 +1,7 @@
 from xend_finance.models.schemas import CooperativeCycle
 
 # from xend_finance.strategies.cooperative.cooperative_index import Cooperative
-from .test_main import xend
+from .main_test import xend
 
 
 def test_create_cooperative_cycle():
