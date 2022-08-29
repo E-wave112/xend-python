@@ -5,7 +5,9 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
-def start_esusu_cycle(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+def start_esusu_cycle(
+    cycle_id: int, provider: str, private_key: str, addresses: Addresses
+):
     """
     It starts an esusu cycle
 

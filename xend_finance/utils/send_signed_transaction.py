@@ -36,13 +36,15 @@ def send_signed_transaction(
     # get gas price
     gas_price = web3.eth.gas_price
     # get gas
-    # gas = tx.estimate_gas({"from": client_address, "nonce": nonce, "gas_price": gas_price})
+    gas = tx.estimate_gas(
+        {"from": client_address, "nonce": nonce, "gas_price": gas_price}
+    )
     encoded_data = contract.encodeABI(fn_name=contract_method)
     transaction_data = {
         "from": client_address,
         "nonce": nonce,
         "gasPrice": gas_price,
-        # "gas": gas,
+        "gas": gas,
         "to": contract_address,
         "data": encoded_data,
         "chainId": network_id,

@@ -5,7 +5,9 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 from xend_finance.utils.key_address import private_key_to_address
 
 
-def check_if_member(cycle_id: int, private_key: str, provider: str, addresses: Addresses):
+def check_if_member(
+    cycle_id: int, private_key: str, provider: str, addresses: Addresses
+):
     """
     It checks if a user is a member of an esusu cycle
 

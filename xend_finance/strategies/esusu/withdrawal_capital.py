@@ -5,7 +5,9 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
-def withdraw_capital(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+def withdraw_capital(
+    cycle_id: int, provider: str, private_key: str, addresses: Addresses
+):
     """
     It withdraws the capital from the esusu cycle
 
@@ -36,4 +38,6 @@ def withdraw_capital(cycle_id: int, provider: str, private_key: str, addresses: 
             "data": receipt,
         }
     except BaseError as e:
-        raise BaseError({"status": "error", "message": "Capital could not be withdrawn", "data": e})
+        raise BaseError(
+            {"status": "error", "message": "Capital could not be withdrawn", "data": e}
+        )

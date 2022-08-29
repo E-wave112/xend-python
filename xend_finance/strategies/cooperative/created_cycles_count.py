@@ -20,9 +20,11 @@ def get_cycles_count(provider: str, private_key: str, addresses: Addresses):
     try:
         contract = getContract(provider, CYCLES, addresses.CYCLES)
         client_address = private_key_to_address(provider, private_key)
-        cycles_count = contract.functions.getRecordIndexLengthForCycleMembersByDepositor(
-            client_address
-        ).call()
+        cycles_count = (
+            contract.functions.getRecordIndexLengthForCycleMembersByDepositor(
+                client_address
+            ).call()
+        )
         return {"status": "success", "data": int(cycles_count)}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

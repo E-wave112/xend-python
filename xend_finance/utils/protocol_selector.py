@@ -5,7 +5,9 @@ from xend_finance.environment.testnet import testnet_protocols
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
-def get_protocol_essentials(protocols: List[Protocols], protocol_name: Union[str, None] = None):
+def get_protocol_essentials(
+    protocols: List[Protocols], protocol_name: Union[str, None] = None
+):
     """
     It takes a list of protocols and a protocol name,
     and returns a dictionary with the addresses, name, and available protocols

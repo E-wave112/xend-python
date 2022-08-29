@@ -60,11 +60,17 @@ def get_esusu_groups(provider: str, private_key: str, addresses: Addresses):
         client_address = private_key_to_address(provider, private_key)
 
         contract = getContract(provider, GROUPS, addresses.GROUPS)
-        esusu_adapter_contract = getContract(provider, ESUSU_ADAPTER, addresses.ESUSU_ADAPTER)
-        groups_count = int(contract.functions.getRecordIndexLengthForCreator(client_address).call())
+        esusu_adapter_contract = getContract(
+            provider, ESUSU_ADAPTER, addresses.ESUSU_ADAPTER
+        )
+        groups_count = int(
+            contract.functions.getRecordIndexLengthForCreator(client_address).call()
+        )
         esusu_groups = []
         for index in range(groups_count, 1, -1):
-            group = contract.functions.getGroupForCreatorIndexer(client_address, index).call()
+            group = contract.functions.getGroupForCreatorIndexer(
+                client_address, index
+            ).call()
             if group["exist"]:
                 group_id = group["index"]
                 single_group = esusu_adapter_contract.functions.GetGroupInformationById(
