@@ -6,7 +6,7 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
 def start_cooperative_cycle(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
-    """This function starts a cooperative cycle by calling the 
+    """This function starts a cooperative cycle by calling the
     `activateCycle` function of the Cooperative contract
 
     :param cycle_id: The id of the cycle to be started

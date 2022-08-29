@@ -11,7 +11,7 @@ def check_if_member(cycle_id: int, private_key: str, provider: str, addresses: A
 
     :param cycle_id: The id of the cycle you want to check if the user is a member of
     :type cycle_id: int
-    :param private_key: The private key of the user who is checking 
+    :param private_key: The private key of the user who is checking
     if they are a member of the cycle
     :type private_key: str
     :param provider: The provider you're using to connect to the blockchain

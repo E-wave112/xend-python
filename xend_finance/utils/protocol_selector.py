@@ -7,12 +7,12 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 
 def get_protocol_essentials(protocols: List[Protocols], protocol_name: Union[str, None] = None):
     """
-    It takes a list of protocols and a protocol name, 
+    It takes a list of protocols and a protocol name,
     and returns a dictionary with the addresses, name, and available protocols
 
     :param protocols: List[Protocols]
     :type protocols: List[Protocols]
-    :param protocol_name: The name of the protocol you want to use. 
+    :param protocol_name: The name of the protocol you want to use.
     If you don't specify one, the first protocol in the list will be used
     :type protocol_name: Union[str, None]
     :return: A dictionary with the following keys:
@@ -43,7 +43,7 @@ def get_protocol_essentials(protocols: List[Protocols], protocol_name: Union[str
 
 def protocol_selector(options: Options):
     """
-    It takes in the options object and returns the protocol essentials 
+    It takes in the options object and returns the protocol essentials
     for the protocol name provided in the options object
 
     :param options: Options
