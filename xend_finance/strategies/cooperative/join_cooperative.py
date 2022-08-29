@@ -13,6 +13,20 @@ def join_a_cooperative(
     private_key: str,
     addresses: Addresses,
 ):
+    """
+    this method allows a user to Join a cooperative cycle
+    :param cycle_id: The cycle number you want to join
+    :type cycle_id: int
+    :param number_of_stakes: The number of stakes you want to join the cooperative with
+    :type number_of_stakes: int
+    :param provider: The URL of the Ethereum node you want to use
+    :type provider: str
+    :param private_key: The private key of the account that will be joining the cooperative
+    :type private_key: str
+    :param addresses: Addresses = Addresses(
+    :type addresses: Addresses
+    """
+
     try:
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
         token_contract = getContract(provider, TOKEN, addresses.TOKEN)
@@ -44,6 +58,4 @@ def join_a_cooperative(
         )
         return {"status": "success", "data": receipt}
     except BaseError as e:
-        raise BaseError(
-            {"status": "error", "message": "Could not join cooperative", "data": e}
-        )
+        raise BaseError({"status": "error", "message": "Could not join cooperative", "data": e})

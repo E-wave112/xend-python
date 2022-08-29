@@ -5,9 +5,20 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 from xend_finance.utils.exceptions.handleErrors import BaseError
 
 
-def withdraw_capital(
-    cycle_id: int, provider: str, private_key: str, addresses: Addresses
-):
+def withdraw_capital(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+    """
+    It withdraws the capital from the esusu cycle
+
+    :param cycle_id: The id of the cycle you want to withdraw capital from
+    :type cycle_id: int
+    :param provider: The provider to use to connect to the blockchain
+    :type provider: str
+    :param private_key: The private key of the user who is withdrawing the capital
+    :type private_key: str
+    :param addresses: This is the address of the contract
+    :type addresses: Addresses
+    :return: A dictionary with the status, message and data.
+    """
     try:
         contract = getContract(provider, ESUSU_SERVICE, addresses.ESUSU_SERVICE)
         data = contract.functions.WithdrawCapitalFromEsusuCycle(cycle_id).transact()
@@ -25,6 +36,4 @@ def withdraw_capital(
             "data": receipt,
         }
     except BaseError as e:
-        raise BaseError(
-            {"status": "error", "message": "Capital could not be withdrawn", "data": e}
-        )
+        raise BaseError({"status": "error", "message": "Capital could not be withdrawn", "data": e})

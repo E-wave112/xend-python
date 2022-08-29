@@ -19,6 +19,6 @@ def get_group(args: ArgsGetGroup, addresses: Addresses):
     try:
         contract = getContract(provider, ESUSU_ADAPTER, addresses.ESUSU_ADAPTER)
         data = contract.functions.GetGroupInformationById(group_id).call()
-        return {"status": "success", "group": data}
+        return {"status": "success", "data": data}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

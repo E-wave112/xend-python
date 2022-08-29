@@ -25,6 +25,6 @@ def get_balance(provider: str, private_key: str, address: Addresses):
         balance = contract.functions.balanceOf(client_address).call()
         # convert balance to ether
         balance = Web3.fromWei(balance, "ether")
-        return {"status": "success", "balance": float(balance)}
+        return {"status": "success", "data": float(balance)}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

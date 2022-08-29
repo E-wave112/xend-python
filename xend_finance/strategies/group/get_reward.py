@@ -21,6 +21,6 @@ def get_rewards(provider: str, private_key: str, address: Addresses):
     try:
         contract = getContract(provider, GROUPS, address.GROUPS)
         data = contract.functions.getXendTokensReward(client_address).call()
-        return {"status": "success", "rewards": data}
+        return {"status": "success", "data": data}
     except BaseError as e:
         raise BaseError({"status": "error", "message": e})

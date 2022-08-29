@@ -19,6 +19,10 @@ def get_xend_mainnet_addresses():
 
 
 def get_bsc_mainnet_addresses() -> List[Protocols]:
+    """
+    It gets the addresses of the contracts deployed on the BSC mainnet
+    :return: A list of protocols
+    """
     protocols: List[Protocols] = []
     data = get_xend_mainnet_addresses()
     if data and type(data) == list:
@@ -35,25 +39,13 @@ def get_bsc_mainnet_addresses() -> List[Protocols]:
                     ),
                     "GROUPS": get_address_by_name(address["addresses"], "groups"),
                     "CYCLES": get_address_by_name(address["addresses"], "cycles"),
-                    "ESUSU_SERVICE": get_address_by_name(
-                        address["addresses"], "esusu_service"
-                    ),
-                    "ESUSU_STORAGE": get_address_by_name(
-                        address["addresses"], "esusu_storage"
-                    ),
-                    "ESUSU_ADAPTER": get_address_by_name(
-                        address["addresses"], "esusu_adapter"
-                    ),
-                    "COOPERATIVE": get_address_by_name(
-                        address["addresses"], "cooperative"
-                    ),
+                    "ESUSU_SERVICE": get_address_by_name(address["addresses"], "esusu_service"),
+                    "ESUSU_STORAGE": get_address_by_name(address["addresses"], "esusu_storage"),
+                    "ESUSU_ADAPTER": get_address_by_name(address["addresses"], "esusu_adapter"),
+                    "COOPERATIVE": get_address_by_name(address["addresses"], "cooperative"),
                     "PERSONAL": get_address_by_name(address["addresses"], "personal"),
-                    "CLIENT_RECORD": get_address_by_name(
-                        address["addresses"], "client_record"
-                    ),
-                    "XEND_TOKEN": get_address_by_name(
-                        address["addresses"], "xend_token"
-                    ),
+                    "CLIENT_RECORD": get_address_by_name(address["addresses"], "client_record"),
+                    "XEND_TOKEN": get_address_by_name(address["addresses"], "xend_token"),
                     "TOKEN": get_address_by_name(address["addresses"], "token"),
                     "PROTOCOL_CURRENCY": get_address_by_name(
                         address["addresses"], "protocol_currency"
@@ -65,4 +57,8 @@ def get_bsc_mainnet_addresses() -> List[Protocols]:
 
 
 def get_layer2_protocols():
+    """
+    > This function returns a list of all the layer 2 protocols that are supported by the tool
+    :return: A list of all the layer 2 protocols
+    """
     return layer_2_assets.layer_assets
