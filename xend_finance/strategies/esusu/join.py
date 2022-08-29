@@ -7,6 +7,20 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
 def join_group(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+    """
+    It approves the transaction to join the esusu group and then executes the `JoinEsusu` contract
+    function
+
+    :param cycle_id: the id of the esusu cycle you want to join
+    :type cycle_id: int
+    :param provider: The provider is the url of the blockchain node you are connecting to
+    :type provider: str
+    :param private_key: The private key of the user who is joining the group
+    :type private_key: str
+    :param addresses: This is the address of the contract
+    :type addresses: Addresses
+    :return: The receipt of the transaction
+    """
     try:
         contract = getContract(provider, ESUSU_SERVICE, addresses.ESUSU_SERVICE)
         token_contract = getContract(provider, TOKEN, addresses.TOKEN)

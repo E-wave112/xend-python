@@ -7,6 +7,15 @@ from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
 def create_cooperative_cycle(args: CooperativeCycle, addresses: Addresses):
+    """
+    This function creates a cooperative cycle
+
+    :param args: CooperativeCycle
+    :type args: CooperativeCycle
+    :param addresses: Addresses
+    :type addresses: Addresses
+    :return: A dictionary with the status, message, and data.
+    """
     private_key = args.private_key
     provider = args.provider
     group_id = args.group_id

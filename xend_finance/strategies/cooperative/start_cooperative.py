@@ -5,9 +5,20 @@ from xend_finance.utils.exceptions.handleErrors import BaseError
 from xend_finance.utils.send_signed_transaction import send_signed_transaction
 
 
-def start_cooperative_cycle(
-    cycle_id: int, provider: str, private_key: str, addresses: Addresses
-):
+def start_cooperative_cycle(cycle_id: int, provider: str, private_key: str, addresses: Addresses):
+    """This function starts a cooperative cycle by calling the
+    `activateCycle` function of the Cooperative contract
+
+    :param cycle_id: The id of the cycle to be started
+    :type cycle_id: int
+    :param provider: The provider URL
+    :type provider: str
+    :param private_key: The private key of the user who is starting the cycle
+    :type private_key: str
+    :param addresses: Addresses
+    :type addresses: Addresses
+    :return: A dictionary with the status, message and data.
+    """
     try:
         contract = getContract(provider, COOPERATIVE, addresses.COOPERATIVE)
         data = contract.functions.activateCycle(cycle_id).transact()
