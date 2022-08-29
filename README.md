@@ -1,6 +1,6 @@
 # Xend-python SDK
 
-![PyPI](https://img.shields.io/pypi/v/xend-python-sdk)  ![PyPI - License](https://img.shields.io/pypi/l/xend-python-sdk) ![PyPI - Downloads](https://img.shields.io/pypi/dm/xend-python-sdk)
+![PyPI](https://img.shields.io/pypi/v/xend-python-sdk)  ![PyPI - License](https://img.shields.io/pypi/l/xend-python-sdk) ![PyPI - Downloads](https://img.shields.io/pypi/dm/xend-python-sdk) [![codecov](https://codecov.io/gh/E-wave112/xend-python/branch/main/graph/badge.svg?token=aDZB7IJOrG)](https://codecov.io/gh/E-wave112/xend-python)
 
 
 The Xend Finance SDK arms python developers with the ability to build DeFi applications with [Xend Finance](https://xend.finance/) without needing to understand the complexities of the underlying blockchain or layer2 infrastructure.

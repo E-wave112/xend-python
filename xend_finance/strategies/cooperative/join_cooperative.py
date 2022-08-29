@@ -58,4 +58,6 @@ def join_a_cooperative(
         )
         return {"status": "success", "data": receipt}
     except BaseError as e:
-        raise BaseError({"status": "error", "message": "Could not join cooperative", "data": e})
+        raise BaseError(
+            {"status": "error", "message": "Could not join cooperative", "data": e}
+        )

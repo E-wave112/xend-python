@@ -22,13 +22,17 @@ def flexible_deposit_record(provider: str, private_key: str, address: Addresses)
         client_address = private_key_to_address(provider, private_key)
         contract = getContract(provider, ABIS["CLIENT_RECORD"], address.CLIENT_RECORD)
         # get the number of records for the client
-        record_count = contract.functions.getClientRecordByAddress(client_address).call()
+        record_count = contract.functions.getClientRecordByAddress(
+            client_address
+        ).call()
         share_balance = record_count["derivativeBalance"]
         lending_balance_contract = getContract(
             provider, ABIS["PROTOCOL_ADAPTER"], address.PROTOCOL_ADAPTER
         )
-        price_per_full_share = lending_balance_contract.functions.GetPricePerFullShare().call()
-        balance = float(price_per_full_share) * float(share_balance) / 10**18
+        price_per_full_share = (
+            lending_balance_contract.functions.GetPricePerFullShare().call()
+        )
+        balance = float(price_per_full_share) * float(share_balance) / 10 ** 18
         if record_count:
             return {
                 "status": "success",
