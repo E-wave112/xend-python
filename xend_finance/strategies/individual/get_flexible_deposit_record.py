@@ -32,7 +32,7 @@ def flexible_deposit_record(provider: str, private_key: str, address: Addresses)
         price_per_full_share = (
             lending_balance_contract.functions.GetPricePerFullShare().call()
         )
-        balance = float(price_per_full_share) * float(share_balance) / 10 ** 18
+        balance = float(price_per_full_share) * float(share_balance) / 10**18
         if record_count:
             return {
                 "status": "success",
