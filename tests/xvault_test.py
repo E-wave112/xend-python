@@ -1,4 +1,3 @@
-# from xend_finance.strategies.xvault.vault import Xvault
 from .main_test import xend
 
 

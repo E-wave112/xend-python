@@ -1,4 +1,3 @@
-# from xend_finance.strategies.esusu.esusu_index import Esusu
 from xend_finance.models.schemas import EsusuCycle
 from .main_test import xend
 

@@ -1,4 +1,3 @@
-# from xend_finance.strategies.xauto.auto import Xauto
 from .main_test import xend
 
 

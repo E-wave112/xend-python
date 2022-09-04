@@ -1,4 +1,3 @@
-# from xend_finance.strategies.group.group_index import Group
 from .main_test import xend
 
 
